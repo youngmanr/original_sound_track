@@ -18,9 +18,13 @@ Wednesday & Friday at 2.30pm
 ### Git Flow
 
 ``` Master ```  Develop branch to be fully tested before merge into master. True consensus reached before push.   
+
 ```   | ```
+
 ``` Develop ```  Always pull from Develop and test/fix issues before pushing.
+
 ```  | | | ```
+
 ``` Features ```  New feature branches to be deleted once merged into Develop.
 
 
