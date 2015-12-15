@@ -25,26 +25,33 @@ $(document).ready(function() {
                      '&key=AIzaSyAGWnWE0GeEPpCYmiy2mXZ9RnDGf_n3JQA';
     $.get(geolocUrl, function(response) {
 
-      var result = response.results[0].address_components;
+      var results = response.results
 
-
-      for (var i = 0; i < result.length; i++) {
-        if(result[i].types.includes('postal_town')) {
-          cityName = result[i].long_name;
-        } else if (result[i].types.includes('locality')) {
-        	cityName = result[i].long_name;
-        }
+      for (var result = 0; result < results.length; result++) {
+        for (var component = 0; component < results[result].address_components.length; component++) {
+          if(results[result].address_components[component].types.includes('postal_town')) {
+            cityName = results[result].address_components[component].long_name;
+          };
+          if (results[result].address_components[component].types.includes('administrative_area_level_1')) {
+            if (results[results.length-1].address_components[0].long_name === 'United Kingdom') {
+              country = results[result].address_components[component].long_name;
+            } else {
+              country = results[results.length-1].address_components[0].long_name;
+            }
+          };
+        };
       };
 
-      //cityName = response.results[response.results.length-3].address_components[0].long_name;
-      //country = response.results[response.results.length-1].address_components[0].long_name;
+
+      // cityName = response.results[response.results.length-3].address_components[0].long_name;
+      // country = response.results[response.results.length-1].address_components[0].long_name;
 
       console.log(cityName, country);
       console.log(response);
       echonestUrl = 'http://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETBX8' +
                     '&format=json' +
                     // '&artist_location=' + convToParam(cityName) + "+" + convToParam(country) +
-                    '&artist_location=' + cityName + '+' + 'spain' +
+                    '&artist_location=' + cityName + '+' + country +
                     '&min_familiarity=0.1' +
                     '&sort=hotttnesss-desc&results=35' +
                     '&bucket=artist_location';
