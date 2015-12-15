@@ -21,29 +21,33 @@ $(document).ready(function() {
   function showPosition(position) {
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
-    geolocUrl = 'https://maps.googleapis.com/maps/api/geocode/json?&language=en&latlng=' + latitude + "," + longitude
+    geolocUrl = 'https://maps.googleapis.com/maps/api/geocode/json?&language=en&latlng=50.9010736,-0.1834991'// + latitude + "," + longitude
                      '&key=AIzaSyAGWnWE0GeEPpCYmiy2mXZ9RnDGf_n3JQA';
 
     $.get(geolocUrl, function(response) {
 
       var results = response.results
-
-      for (var result = 0; result < results.length; result++) {
-        for (var component = 0; component < results[result].address_components.length; component++) {
-          if(results[result].address_components[component].types.includes('locality')) {
-            cityName = results[result].address_components[component].long_name;
-          };
-          if (results[result].address_components[component].types.includes('administrative_area_level_1')) {
-            if (results[results.length-1].address_components[0].long_name === 'United Kingdom') {
+      if (results[results.length-1].address_components[0].long_name === 'United Kingdom') {
+        for (var result = 0; result < results.length; result++) {
+          for (var component = 0; component < results[result].address_components.length; component++) {
+            if(results[result].address_components[component].types.includes('postal_town')) {
+              cityName = results[result].address_components[component].long_name;
+            };
+            if (results[result].address_components[component].types.includes('administrative_area_level_1')) {
               country = results[result].address_components[component].long_name;
-            } else {
-              country = results[results.length-1].address_components[0].long_name;
-            }
+            };
           };
         };
+      } else {
+        for (var result = 0; result < results.length; result++) {
+          for (var component = 0; component < results[result].address_components.length; component++) {
+            if(results[result].address_components[component].types.includes('locality')) {
+              cityName = results[result].address_components[component].long_name;
+            };
+          };
+        };
+        country = results[results.length-1].address_components[0].long_name;
       };
-
-
 
 
       // cityName = response.results[response.results.length-3].address_components[0].long_name;
@@ -56,7 +60,7 @@ $(document).ready(function() {
                     // '&artist_location=' + convToParam(cityName) + "+" + convToParam(country) +
                     '&artist_location=' + cityName + '+' + country +
                     '&min_familiarity=0.1' +
-                    '&sort=hotttnesss-desc&results=35' +
+                    '&sort=familiarity-desc&results=35' +
                     '&bucket=artist_location';
                     console.log(echonestUrl);
       getArtists();
@@ -73,7 +77,9 @@ $(document).ready(function() {
         function(data){
         // data is JSON response object
         console.log(data.response);
-        $("#results").append("<li>"+data.response.artists[0].name+"</li>");
+        data.response.artists.forEach(function(artist) {
+          $("#results").append("<li>"+artist.name+"</li>");
+        });
     });
   };
 
