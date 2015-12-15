@@ -21,15 +21,16 @@ $(document).ready(function() {
   function showPosition(position) {
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
-    geolocUrl = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + "," + longitude
+    geolocUrl = 'https://maps.googleapis.com/maps/api/geocode/json?&language=en&latlng=' + latitude + "," + longitude
                      '&key=AIzaSyAGWnWE0GeEPpCYmiy2mXZ9RnDGf_n3JQA';
+
     $.get(geolocUrl, function(response) {
 
       var results = response.results
 
       for (var result = 0; result < results.length; result++) {
         for (var component = 0; component < results[result].address_components.length; component++) {
-          if(results[result].address_components[component].types.includes('postal_town')) {
+          if(results[result].address_components[component].types.includes('locality')) {
             cityName = results[result].address_components[component].long_name;
           };
           if (results[result].address_components[component].types.includes('administrative_area_level_1')) {
