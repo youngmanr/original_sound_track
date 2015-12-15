@@ -47,11 +47,7 @@ $(document).ready(function() {
         country = results[results.length-1].address_components[0].long_name;
       };
 
-
-      // cityName = response.results[response.results.length-3].address_components[0].long_name;
-      // country = response.results[response.results.length-1].address_components[0].long_name;
-
-      console.log(cityName, country);
+      console.log("cityName = " + cityName, "country = " + country);
       console.log(response);
       getArtists();
     });
@@ -69,7 +65,8 @@ $(document).ready(function() {
                   '&artist_location=' + cityName + '+' + country +
                   '&min_familiarity=0.1' +
                   '&sort=familiarity-desc&results=35' +
-                  '&bucket=artist_location';
+                  '&bucket=artist_location' +
+                  '&bucket=songs';
                   console.log(echonestUrl);
 
     $.getJSON(echonestUrl,
@@ -77,7 +74,10 @@ $(document).ready(function() {
         // data is JSON response object
         console.log(data.response);
         artist = data.response.artists[Math.floor(Math.random() * data.response.artists.length)];
-        $("#results").append("<li>Randomly selected artist: "+artist.name+"</li>");
+        song = artist.songs[Math.floor(Math.random() * artist.songs.length)]
+        $("#results").append("Randomly selected artist: "+artist.name+"<br/>" +
+                             "Randomly selected song: " + song.title + "<br/>" +
+                             "-------------------------------------------------- <br/>");
     });
   };
 
