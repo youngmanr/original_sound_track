@@ -1,1 +1,1 @@
-app.js
+var originalSoundTrack = angular.module('OriginalSoundTrack', ['ngResource']);
