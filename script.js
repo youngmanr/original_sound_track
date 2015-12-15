@@ -43,6 +43,8 @@ $(document).ready(function() {
       };
 
 
+
+
       // cityName = response.results[response.results.length-3].address_components[0].long_name;
       // country = response.results[response.results.length-1].address_components[0].long_name;
 
