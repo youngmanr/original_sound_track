@@ -1,13 +1,12 @@
 $(document).ready(function() {
 
-  $.getJSON("http://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETBX8&format=json&artist_location=manchester+england&min_familiarity=0.5&sort=hotttnesss-desc&results=50&bucket=artist_location",
-      function(data){
-      // data is JSON response object
-      console.log(data.response);
-      $("#results").append("<li>"+data.response.artists[0].name+"</li>");
-  });
-
+  var latitude;
+  var longitude;
+  var cityName;
+  var country;
+  var topBand;
   var geolocUrl;
+  var echonestUrl;
 
   $('button').click(function() {
     console.log('button clicked');
@@ -16,17 +15,63 @@ $(document).ready(function() {
 
   function getLocation() {
     console.log('get position');
-    navigator.geolocation.watchPosition(showPosition, console.log("failed to get position"), {timeout: 30000});
+    navigator.geolocation.watchPosition(showPosition, function() { console.log("failed to get position") }, {timeout: 30000});
   };
 
   function showPosition(position) {
-    geolocUrl = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude+ "," + position.coords.longitude
-                     '&key=AIzaSyAGWnWE0GeEPpCYmiy2mXZ9RnDGf_n3JQA';               	
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+    geolocUrl = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + "," + longitude
+                     '&key=AIzaSyAGWnWE0GeEPpCYmiy2mXZ9RnDGf_n3JQA';
     $.get(geolocUrl, function(response) {
-      console.log(response.results[response.results.length-3].address_components[0].long_name);
-    	console.log(response.results);
+
+      var result = response.results[0].address_components;
+      var finalresult;
+
+      for (var i = 0; i < result.length; i++) {
+        if(result[i].types.includes('postal_town')) {
+          cityName = result[i].long_name;
+          break;
+        };
+      };
+      console.log(finalresult);
+
+      // cityName = response.results[response.results.length-3].address_components[0].long_name;
+      country = response.results[response.results.length-1].address_components[0].long_name;
+
+      console.log(cityName, country);
+      console.log(response);
+      echonestUrl = 'http://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETBX8' +
+                    '&format=json' +
+                    // '&artist_location=' + convToParam(cityName) + "+" + convToParam(country) +
+                    '&artist_location=' + cityName + '+' + 'England' +
+                    '&min_familiarity=0.5' +
+                    '&sort=hotttnesss-desc&results=50' +
+                    '&bucket=artist_location';
+                    console.log(echonestUrl);
+      getArtists();
     });
   };
-});
 
+  // ALTERNATIVE GEOLOCATION - a lot easier
+  // $.get("http://ipinfo.io", function(response) {
+  //   console.log(response.city, response.country, response.region);
+  // }, "jsonp");
+
+  function getArtists() {
+    $.getJSON(echonestUrl,
+        function(data){
+        // data is JSON response object
+        console.log(data.response);
+        $("#results").append("<li>"+data.response.artists[0].name+"</li>");
+    });
+  };
+
+  function convToParam(words) {
+    var result = words.split(" ");
+    result = result.join("+");
+    console.log(result);
+  }
+
+});
 
