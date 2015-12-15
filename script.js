@@ -26,27 +26,27 @@ $(document).ready(function() {
     $.get(geolocUrl, function(response) {
 
       var result = response.results[0].address_components;
-      var finalresult;
+
 
       for (var i = 0; i < result.length; i++) {
         if(result[i].types.includes('postal_town')) {
           cityName = result[i].long_name;
-          break;
-        };
+        } else if (result[i].types.includes('locality')) {
+        	cityName = result[i].long_name;
+        }
       };
-      console.log(finalresult);
 
-      // cityName = response.results[response.results.length-3].address_components[0].long_name;
-      country = response.results[response.results.length-1].address_components[0].long_name;
+      //cityName = response.results[response.results.length-3].address_components[0].long_name;
+      //country = response.results[response.results.length-1].address_components[0].long_name;
 
       console.log(cityName, country);
       console.log(response);
       echonestUrl = 'http://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETBX8' +
                     '&format=json' +
                     // '&artist_location=' + convToParam(cityName) + "+" + convToParam(country) +
-                    '&artist_location=' + cityName + '+' + 'England' +
-                    '&min_familiarity=0.5' +
-                    '&sort=hotttnesss-desc&results=50' +
+                    '&artist_location=' + cityName + '+' + 'spain' +
+                    '&min_familiarity=0.1' +
+                    '&sort=hotttnesss-desc&results=35' +
                     '&bucket=artist_location';
                     console.log(echonestUrl);
       getArtists();
