@@ -5,8 +5,6 @@ $(document).ready(function() {
   var cityName;
   var country;
   var topBand;
-  var geolocUrl;
-  var echonestUrl;
 
   $('button').click(function() {
     console.log('button clicked');
@@ -21,7 +19,7 @@ $(document).ready(function() {
   function showPosition(position) {
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
-    geolocUrl = 'https://maps.googleapis.com/maps/api/geocode/json?&language=en&latlng=50.9010736,-0.1834991'// + latitude + "," + longitude
+    var geolocUrl = 'https://maps.googleapis.com/maps/api/geocode/json?&language=en&latlng=' + latitude + "," + longitude
                      '&key=AIzaSyAGWnWE0GeEPpCYmiy2mXZ9RnDGf_n3JQA';
 
     $.get(geolocUrl, function(response) {
@@ -31,10 +29,10 @@ $(document).ready(function() {
         for (var result = 0; result < results.length; result++) {
           for (var component = 0; component < results[result].address_components.length; component++) {
             if(results[result].address_components[component].types.includes('postal_town')) {
-              cityName = results[result].address_components[component].long_name;
+              cityName = convToParam(results[result].address_components[component].long_name);
             };
             if (results[result].address_components[component].types.includes('administrative_area_level_1')) {
-              country = results[result].address_components[component].long_name;
+              country = convToParam(results[result].address_components[component].long_name);
             };
           };
         };
@@ -55,14 +53,6 @@ $(document).ready(function() {
 
       console.log(cityName, country);
       console.log(response);
-      echonestUrl = 'http://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETBX8' +
-                    '&format=json' +
-                    // '&artist_location=' + convToParam(cityName) + "+" + convToParam(country) +
-                    '&artist_location=' + cityName + '+' + country +
-                    '&min_familiarity=0.1' +
-                    '&sort=familiarity-desc&results=35' +
-                    '&bucket=artist_location';
-                    console.log(echonestUrl);
       getArtists();
     });
   };
@@ -73,20 +63,34 @@ $(document).ready(function() {
   // }, "jsonp");
 
   function getArtists() {
+    var echonestUrl = 'http://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETBX8' +
+                  '&format=json' +
+                  // '&artist_location=' + convToParam(cityName) + "+" + convToParam(country) +
+                  '&artist_location=' + cityName + '+' + country +
+                  '&min_familiarity=0.1' +
+                  '&sort=familiarity-desc&results=35' +
+                  '&bucket=artist_location';
+                  console.log(echonestUrl);
+
     $.getJSON(echonestUrl,
         function(data){
         // data is JSON response object
         console.log(data.response);
-        data.response.artists.forEach(function(artist) {
-          $("#results").append("<li>"+artist.name+"</li>");
-        });
+        artist = data.response.artists[Math.floor(Math.random() * data.response.artists.length)];
+        $("#results").append("<li>Randomly selected artist: "+artist.name+"</li>");
     });
   };
 
+  function getSpotifyData() {
+
+  }
+
+
+  // CONVERTS MULTI WORD STRINGS INTO PARAMS e.g. 'Brighton and Hove' => 'Brighton+and+Hove'
   function convToParam(words) {
     var result = words.split(" ");
     result = result.join("+");
-    console.log(result);
+    return result;
   }
 
 });
