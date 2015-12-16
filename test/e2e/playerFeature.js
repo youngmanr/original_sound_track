@@ -14,11 +14,11 @@ describe('OST Player', function() {
     })
 
     it('should have a play button', function() {
-      expect(element(by.css('.jp-play')).isDisplayed()).toBeTruthy();
+      expect(element(by.css('.jp-play')).isDisplayed()).toBe(true);
     });
 
     it('should not have a pause button', function() {
-      expect(element(by.css('.jp-pause')).isDisplayed()).toBeFalsy();
+      expect(element(by.css('.jp-pause')).isDisplayed()).toBe(false);
     });
   });
 
@@ -26,14 +26,31 @@ describe('OST Player', function() {
     beforeEach(function() {
       browser.get('http://localhost:8080');
       element(by.css('.jp-play')).click();
-    })
+    });
 
     it('should not have a play button', function() {
-      expect(element(by.css('.jp-play')).isDisplayed()).toBeFalsy();
+      expect(element(by.css('.jp-play')).isDisplayed()).toBe(false);
     });
 
     it('should have a pause button', function() {
-      expect(element(by.css('.jp-pause')).isDisplayed()).toBeTruthy();
+      expect(element(by.css('.jp-pause')).isDisplayed()).toBe(true);
     });
   });
+
+  describe('is pausing a track', function() {
+    beforeEach(function() {
+      browser.get('http://localhost:8080');
+      element(by.css('.jp-play')).click();
+      element(by.css('.jp-pause')).click();
+    });
+
+    it('should have a play button', function() {
+      expect(element(by.css('.jp-play')).isDisplayed()).toBe(true);
+    });
+
+    it('should not have a pause button', function() {
+      expect(element(by.css('.jp-pause')).isDisplayed()).toBe(false);
+    });
+  });
+    
 });
