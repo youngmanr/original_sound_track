@@ -83,10 +83,9 @@ $(document).ready(function() {
 
       // SELECTS A RANDOM TRACK FROM topTracks
       artist.randomTrack = function() {
-          return this.topTracks[Math.floor(Math.random() * this.topTracks.length)];
+          return this.topTracks[Math.floor(Math.random() * this.topTracks.length)].preview_url;
         }
-
-        alert('Everything has been completed');
+        console.log(artist.randomTrack());
     });
   }
 
