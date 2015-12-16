@@ -57,7 +57,7 @@ $(document).ready(function() {
     var echonestUrl = 'https://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETBX8' +
                   '&format=json' +
                   '&artist_location=' + cityName + '+' + country +
-                  '&min_familiarity=0.5' +
+                  '&min_familiarity=0.1' +
                   '&sort=familiarity-desc&results=35' +
                   '&bucket=artist_location' +
                   '&bucket=songs' + '&bucket=id:spotify';
