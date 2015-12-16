@@ -4,16 +4,14 @@ $(document).ready(function() {
   var longitude;
   var cityName;
   var country;
-  var topBand;
+  var playlist = [];
 
   $('button').click(function() {
-    console.log('button clicked');
     getLocation();
   });
 
   function getLocation() {
-    console.log('get position');
-    navigator.geolocation.watchPosition(showPosition, function() { console.log("failed to get position") }, {timeout: 30000});
+    navigator.geolocation.getCurrentPosition(showPosition, function() { console.log("failed to get position") }, {timeout: 30000});
   };
 
   function showPosition(position) {
@@ -67,7 +65,6 @@ $(document).ready(function() {
                   '&sort=familiarity-desc&results=35' +
                   '&bucket=artist_location' +
                   '&bucket=songs';
-                  console.log(echonestUrl);
 
     $.getJSON(echonestUrl,
         function(data){
@@ -75,9 +72,13 @@ $(document).ready(function() {
         console.log(data.response);
         artist = data.response.artists[Math.floor(Math.random() * data.response.artists.length)];
         song = artist.songs[Math.floor(Math.random() * artist.songs.length)]
+        console.log("artist object", artist);
+        console.log("song object", song);
         $("#results").append("Randomly selected artist: "+artist.name+"<br/>" +
                              "Randomly selected song: " + song.title + "<br/>" +
                              "-------------------------------------------------- <br/>");
+        playlist.push({artist: artist.name, track: song.title});
+        console.log(playlist);
     });
   };
 
