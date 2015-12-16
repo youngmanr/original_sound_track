@@ -64,11 +64,15 @@ $(document).ready(function() {
                   '&min_familiarity=0.1' +
                   '&sort=familiarity-desc&results=35' +
                   '&bucket=artist_location' +
-                  '&bucket=songs';
+                  '&bucket=songs' + '&bucket=id:spotify';
 
     $.getJSON(echonestUrl,
         function(data){
         // data is JSON response object
+        var spotifyID;
+        var topTracks;
+        var randomTrack;
+
         console.log(data.response);
         artist = data.response.artists[Math.floor(Math.random() * data.response.artists.length)];
         song = artist.songs[Math.floor(Math.random() * artist.songs.length)]
@@ -77,13 +81,32 @@ $(document).ready(function() {
         $("#results").append("Randomly selected artist: "+artist.name+"<br/>" +
                              "Randomly selected song: " + song.title + "<br/>" +
                              "-------------------------------------------------- <br/>");
-        playlist.push({artist: artist.name, track: song.title});
-        console.log(playlist);
+
+        spotifyID = spotifyArtistId(artist);
+        playlist.push({artist: artist.name, spotifyID: spotifyID});
+        getArtistTopTracks(playlist[0]);
     });
   };
 
-  function getSpotifyData() {
+  function getArtistTopTracks(artist) {
+    var spotifyID = artist.spotifyID;
+    var topTracksUrl = "https://api.spotify.com/v1/artists/" + spotifyID + "/top-tracks?country=GB";
 
+    $.get(topTracksUrl, function(response) {
+      artist.topTracks = response.tracks;
+      artist.randomTrack = selectArtistRandomTrack(artist.topTracks);
+      console.log( "preview URL:", artist.randomTrack.preview_url);
+    });
+  }
+
+  function selectArtistRandomTrack(topTracks) {
+    return topTracks[Math.floor(Math.random() * topTracks.length)];
+  }
+
+  function spotifyArtistId(artist) {
+    var foreignId = artist.foreign_ids[0].foreign_id
+
+    return foreignId.slice(15);
   }
 
 
