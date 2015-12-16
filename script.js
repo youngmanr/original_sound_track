@@ -54,7 +54,7 @@ $(document).ready(function() {
 
   // MAKES ECHONEST API CALL BASED ON cityName AND country
   function getArtists() {
-    var echonestUrl = 'http://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETBX8' +
+    var echonestUrl = 'https://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETBX8' +
                   '&format=json' +
                   '&artist_location=' + cityName + '+' + country +
                   '&min_familiarity=0.5' +
