@@ -10,8 +10,10 @@
   <script src="bower_components/angular-resource/angular-resource.js"></script>
   <script src="app/js/app.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.2/jplayer/jquery.jplayer.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.2/add-on/jplayer.playlist.js"></script>
   <script src="app/js/jPlayer.js"></script>
   <script src="app/css/style.css"></script>
+  <script src="script.js"></script>
 </head>
 <body>
 <div id="jp_container_1" class="jp-video ">
@@ -31,6 +33,7 @@
         <div class="jp-duration"></div>
         <div class="jp-controls-holder">
           <ul class="jp-controls">
+            <li><button id="load-track">Load track</button</li>
             <li><button type="button" class="jp-play" tabindex="1">play</button></li>
             <li><button type="button" class="jp-pause">pause</button></li>
             <li><button type="button" class="jp-mute" tabindex="1" title="mute">mute</button></li>
