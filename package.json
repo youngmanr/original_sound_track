@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node ost.js",
+    "postinstall": "bower install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,6 +29,7 @@
     "protractor": "^3.0.0"
   },
   "dependencies": {
+    "express": "^4.13.3",
     "http-server": "^0.8.5"
   }
 }
