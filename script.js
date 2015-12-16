@@ -54,24 +54,18 @@ $(document).ready(function() {
 
   // MAKES ECHONEST API CALL BASED ON cityName AND country
   function getArtists() {
-    var echonestUrl = 'https://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETBX8' +
+    var echonestUrl = 'http://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETBX8' +
                   '&format=json' +
                   '&artist_location=' + cityName + '+' + country +
-                  '&min_familiarity=0.1' +
+                  '&min_familiarity=0.5' +
                   '&sort=familiarity-desc&results=35' +
                   '&bucket=artist_location' +
                   '&bucket=songs' + '&bucket=id:spotify';
 
-    $.getJSON(echonestUrl,
-        function(data){
-
-        console.log(data.response);
-        artist = data.response.artists[Math.floor(Math.random() * data.response.artists.length)];
-        console.log("artist object", artist);
-        artist.spotifyID = spotifyArtistId(artist);
-        playlist.push(artist);
+    $.get(echonestUrl, function(data){
+        data.response.artists.forEach(function(artist) {
         getArtistTopTracks(artist);
-
+      });
     });
   };
 
@@ -82,10 +76,6 @@ $(document).ready(function() {
     $.get(topTracksUrl, function(response) {
       artist.topTracks = response.tracks;
 
-      // SELECTS A RANDOM TRACK FROM topTracks
-      artist.randomTrack = function() {
-          return this.topTracks[Math.floor(Math.random() * this.topTracks.length)].preview_url;
-        }
         trackUrl = artist.randomTrack();
         playerFunction(trackUrl);
     });
