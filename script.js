@@ -63,7 +63,7 @@ $(document).ready(function() {
                   '&bucket=songs' + '&bucket=id:spotify';
 
     $.get(echonestUrl, function(data){
-        data.response.artists.forEach(function(artist) {
+      data.response.artists.forEach(function(artist) {
         getArtistTopTracks(artist);
       });
     });
@@ -71,14 +71,16 @@ $(document).ready(function() {
 
   // MAKES SPOTIFY API CALL BASED ON THE ARTIST ID AND SETS PROPERTY topTracks AND A randomTrack
   function getArtistTopTracks(artist) {
-    var topTracksUrl = "https://api.spotify.com/v1/artists/" + artist.spotifyID + "/top-tracks?country=" + countryCode;
+    var spotifyId = spotifyArtistId(artist);
+    var topTracksUrl = "https://api.spotify.com/v1/artists/" + spotifyId + "/top-tracks?country=" + countryCode;
 
     $.get(topTracksUrl, function(response) {
-      artist.topTracks = response.tracks;
-
-        trackUrl = artist.randomTrack();
-        playerFunction(trackUrl);
+      response.tracks.forEach(function(song) {
+        playlist.push(song);
+      });
+      playerFunction(playlist[0].preview_url);
     });
+    console.log(playlist);
   }
 
   // PICKS OUT THE ARTIST ID FROM THE URI
