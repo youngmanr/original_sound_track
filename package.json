@@ -29,6 +29,7 @@
     "protractor": "^3.0.0"
   },
   "dependencies": {
+    "bower": "^1.7.1",
     "express": "^4.13.3",
     "http-server": "^0.8.5"
   }
