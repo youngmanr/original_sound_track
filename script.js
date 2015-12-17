@@ -120,11 +120,12 @@ $(document).ready(function() {
     var eventUrl = 'http://api.songkick.com/api/3.0/metro_areas/' +
     metroAreaID + 
     '/calendar.json?apikey=qMMmyACVKOgL3Kgb';
-
     $.getJSON(eventUrl, function(data){
+      console.log(data.resultsPage);
       $.each(data.resultsPage.results.event, function (i, event) {
+        var uri = event.uri;
         var displayName = event.displayName;
-        $("#event").append("<li>"+displayName+"</li>");
+        $("#event").append("<li><a href="+uri+">"+displayName+"</a></li>");
       });
     });
   };
