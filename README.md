@@ -14,10 +14,12 @@ Stand-ups:
 Retro:
 Wednesday & Friday at 2.30pm
 
+https://docs.google.com/document/d/1PymRPDJkgK5D5HhTtilmV6tAKLntoazEezHT0CInLKI/edit
+
 
 ### Git Flow
 
-``` Master ```  *Develop branch to be fully tested before merge into master. True consensus reached before push.*   
+``` Master ```  *Develop branch to be fully tested before merge into master. True consensus reached before push.*
 
 ```   | ```
 
