@@ -82,12 +82,13 @@ $(document).ready(function() {
 
         myPlaylist.add({
           title: song.name,
-          artist: song.artist[0].name,
+          artist: song.artists[0].name,
           mp3: song.preview_url
         });
 
       });
-      playerFunction();
+
+      myPlaylist.play(0);
     });
   }
 
@@ -104,5 +105,48 @@ $(document).ready(function() {
     result = result.join("+");
     return result;
   }
+
+
+/////// ************************** PLAYER **************************
+
+  $("#jquery_jplayer_1").jPlayer({
+
+      play: function(e) {
+        console.log(e.jPlayer.status.media.title)
+      },
+      // ready: function () {
+      // //   console.log('player is ready');
+      // //   $(this).jPlayer("setMedia", {
+      // //     title: "THIS IS THE FIRST SONG",
+      // //     mp3: "http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3"
+      // //   });
+      //   // myPlaylist.play(0);
+      // },
+      swfPath: "/js",
+      supplied: "mp3"
+  });
+
+  var myPlaylist = new jPlayerPlaylist({
+    jPlayer: "#jquery_jplayer_1",
+    cssSelectorAncestor: "#jp_container_1"
+  },
+  [], //EMPTY PLAYLIST
+  {
+    playlistOptions: {
+      enableRemoveControls: true
+    },
+    swfPath: "/js",
+    supplied: "ogv, m4v, oga, mp3",
+    smoothPlayBar: true,
+    keyEnabled: true,
+    ready: console.log('playlist loaded'),
+    autoplay: true,
+    audioFullScreen: true // Allows the audio poster to go full screen via keyboard
+  });
+
+  $("#skip").click(function() {
+    console.log("skip button");
+    myPlaylist.next();
+  });
 
 });
