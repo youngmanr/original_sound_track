@@ -109,8 +109,18 @@ $(document).ready(function() {
   function getEvent(latitude, longitude) {
     var eventUrl = 'http://api.songkick.com/api/3.0/search/locations.json?location=geo:'+
       latitude + ',' + longitude +
-      '&apikey=qMMmyACVKOgL3Kgb'
-      console.log(eventUrl);
+      '&apikey=qMMmyACVKOgL3Kgb';
+    $.getJSON(eventUrl, function(data){
+        var metroAreaID = data.resultsPage.results.location[0].metroArea.id;
+        upcomingEvents(metroAreaID);
+    });
+  };
+
+  function upcomingEvents(metroAreaID) {
+    var eventUrl = 'http://api.songkick.com/api/3.0/metro_areas/' +
+    metroAreaID + 
+    '/calendar.json?apikey=qMMmyACVKOgL3Kgb';
+
     $.getJSON(eventUrl, function(data){
         console.log(data);
     });
