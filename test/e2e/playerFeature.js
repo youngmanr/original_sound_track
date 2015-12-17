@@ -14,6 +14,8 @@ describe('OST Player', function() {
   describe('is not playing a track', function() {
     it('should have a play button', function() {
       expect(element(by.css('.jp-play')).isDisplayed()).toBe(true);
+      expect(element(by.css('.jp-current-time')).getText()).toContain('00:00');
+      expect(element(by.css('.jp-duration')).getText()).toContain('00:30');
     });
 
     it('should not have a pause button', function() {
@@ -28,6 +30,8 @@ describe('OST Player', function() {
 
     it('should not have a play button', function() {
       expect(element(by.css('.jp-play')).isDisplayed()).toBe(false);
+      browser.sleep(1400);
+      expect(element(by.css('.jp-current-time')).getText()).toContain('00:01');
     });
 
     it('should have a pause button', function() {
@@ -38,11 +42,13 @@ describe('OST Player', function() {
   describe('is pausing a track', function() {
     beforeEach(function() {
       element(by.css('.jp-play')).click();
+      browser.sleep(2400);
       element(by.css('.jp-pause')).click();
     });
 
     it('should have a play button', function() {
       expect(element(by.css('.jp-play')).isDisplayed()).toBe(true);
+      expect(element(by.css('.jp-current-time')).getText()).toContain('00:02');
     });
 
     it('should not have a pause button', function() {
