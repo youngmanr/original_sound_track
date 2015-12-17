@@ -122,7 +122,10 @@ $(document).ready(function() {
     '/calendar.json?apikey=qMMmyACVKOgL3Kgb';
 
     $.getJSON(eventUrl, function(data){
-        console.log(data);
+      $.each(data.resultsPage.results.event, function (i, event) {
+        var displayName = event.displayName;
+        $("#event").append("<li>"+displayName+"</li>");
+      });
     });
   };
 });
