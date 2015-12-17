@@ -49,6 +49,7 @@ $(document).ready(function() {
       console.log("cityName = " + cityName, "country = " + country, "countryCode = " + countryCode);
       console.log(response);
       getArtists();
+      getEvent(latitude, longitude);
     });
   };
 
@@ -105,4 +106,13 @@ $(document).ready(function() {
     return result;
   }
 
+  function getEvent(latitude, longitude) {
+    var eventUrl = 'http://api.songkick.com/api/3.0/search/locations.json?location=geo:'+
+      latitude + ',' + longitude +
+      '&apikey=qMMmyACVKOgL3Kgb'
+      console.log(eventUrl);
+    $.getJSON(eventUrl, function(data){
+        console.log(data);
+    });
+  };
 });
