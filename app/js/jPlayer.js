@@ -73,6 +73,11 @@ $("#test").click(function() {
   ]);
 });
 
+$("#skip").click(function() {
+  console.log("skip button");
+  myPlaylist.next();
+});
+
 };
 
 var playerFunction = function(song){
