@@ -7,13 +7,14 @@ $(document).ready(function() {
   var trackUrl;
 
   $('#load-track').click(function() {
-    getLocation();
+    $.when(getLocation()).done( function() { console.log(playlist) } );
   });
 
   function getLocation() {
     navigator.geolocation.getCurrentPosition(showPosition, function() { console.log("failed to get position") }, {timeout: 30000});
   };
 
+  //
   function showPosition(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
@@ -59,15 +60,17 @@ $(document).ready(function() {
                   '&artist_location=' + cityName + '+' + country +
                   '&min_familiarity=0.5' +
                   '&sort=familiarity-desc&results=35' +
-                  '&bucket=artist_location' +
-                  '&bucket=songs' + '&bucket=id:spotify';
+                  '&bucket=id:spotify';
 
     $.get(echonestUrl, function(data){
       data.response.artists.forEach(function(artist) {
         getArtistTopTracks(artist);
       });
+      console.log(playlist);
     });
   };
+
+
 
   // MAKES SPOTIFY API CALL BASED ON THE ARTIST ID AND SETS PROPERTY topTracks AND A randomTrack
   function getArtistTopTracks(artist) {
@@ -76,11 +79,17 @@ $(document).ready(function() {
 
     $.get(topTracksUrl, function(response) {
       response.tracks.forEach(function(song) {
-        playlist.push(song);
+
+        myPlaylist.add({
+          title: song.name,
+          artist: song.artist[0].name,
+          mp3: song.preview_url,
+          poster:
+        });
+
       });
-      playerFunction(playlist[0].preview_url);
+      playerFunction();
     });
-    console.log(playlist);
   }
 
   // PICKS OUT THE ARTIST ID FROM THE URI
