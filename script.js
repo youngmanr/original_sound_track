@@ -69,17 +69,23 @@ $(document).ready(function() {
 
 
   // MAKES ECHONEST API CALL BASED ON cityName AND country
-  function getArtists(positionData) {
+  function getArtists(positionData, familiarity, genre) {
     return new Promise(function(resolve, reject) {
+      var familiarityTerm = familiarity || '0.1';
+      var genreTerm = genre || '*';
       var cityName = positionData.cityName;
       var country = positionData.country;
       var echonestUrl = 'https://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETBX8' +
                     '&format=json' +
                     '&artist_location=' + cityName + '+' + country +
-                    '&min_familiarity=0.1' +
+                    '&min_familiarity=' + familiarityTerm +
+                    '&description=' + genreTerm +
                     '&sort=familiarity-desc&results=35' +
-                    '&bucket=id:spotify';
+                    '&bucket=id:spotify' +
+                    '&bucket=genre';
 
+      console.log('echonestURL ', echonestUrl)
+https://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETB…=classical&sort=familiarity-desc&results=35&bucket=id:spotify&bucket=genre
       $.get(echonestUrl, function(data){
         resolve(data);
       });
