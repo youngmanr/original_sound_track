@@ -13,7 +13,7 @@ var myPlaylist = new jPlayerPlaylist({
   keyEnabled: true,
 
   // ready: console.log('playlist loaded'),
-  
+
   autoplay: true,
   audioFullScreen: true // Allows the audio poster to go full screen via keyboard
 });
