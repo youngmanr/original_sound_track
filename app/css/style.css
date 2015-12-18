@@ -1,18 +1,28 @@
 body {
-	padding: 10%;
-	background-color: black;
+    max-width: 80%;
+    padding: 10%;
+	background-color: #F0F8FF;
+}
+
+
+div {
+    padding: auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 #jp_container_1 {	
-	background-color: white;
-    border-radius: 20px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    background-color: white;
+    border-radius: 15px;
     -webkit-box-shadow: 10px 0px 32px -9px rgba(0,0,0,0.52);
     -moz-box-shadow: 10px 0px 32px -9px rgba(0,0,0,0.52);
     box-shadow: 10px 0px 32px -9px rgba(0,0,0,0.52);
 }
 
 #event {
-	padding-top: 25px;
+	padding-top: 15px;
 	background-color: white;
     border-radius: 20px;  
     -webkit-box-shadow: 10px 0px 32px -9px rgba(0,0,0,0.52);

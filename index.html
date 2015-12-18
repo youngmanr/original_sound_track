@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title>Original Sound Track</title>
+
+  <link type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.2/skin/pink.flag/css/jplayer.pink.flag.css" rel="stylesheet">
+  <link type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.2/skin/pink.flag/css/jplayer.pink.flag.min.css" rel="stylesheet">
+  <link type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.2/skin/pink.flag/image/jplayer.pink.flag.jpg
+" rel="stylesheet">
+  <link type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.2/skin/pink.flag/image/jplayer.pink.flag.seeking.gif" rel="stylesheet">
+  <link type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.2/skin/pink.flag/image/jplayer.pink.flag.video.play.png" rel="stylesheet">
+
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="app/css/style.css">
-  <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-resource/angular-resource.js"></script>
-  <script src="app/js/app.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.2/jplayer/jquery.jplayer.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.2/add-on/jplayer.playlist.js"></script>
-  <script src="script.js"></script>
-  <script src="popup.js"></script>
 </head>
 <header>
   <h1>Header</h1>
@@ -36,16 +36,23 @@
         <div class="jp-duration"></div>
         <div class="jp-controls-holder">
           <ul class="jp-controls">
-            <li><button id="load-track">Load track</button></li>
-            <li><button type="button" class="jp-play" tabindex="1">play</button></li>
-            <li><button type="button" class="jp-pause">pause</button></li>
-            <li><button type="button" class="jp-mute" tabindex="1" title="mute">mute</button></li>
-            <li><button type="button" class="jp-unmute" tabindex="1" title="unmute">unmute</button></li>
-            <li><button type="button" id="skip" class="jp-skip" tabindex="1" title="skip">skip</button></li>
+            <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+            <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+            <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+            <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+            <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+            <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+            <li><a href="javascript:;" id="skip" class="jp-skip"tabindex="1">skip</a></li>
           </ul>
           <div class="jp-volume-bar">
             <div class="jp-volume-bar-value"></div>
           </div>
+          <ul class="jp-toggles">
+              <li><a href="javascript:;" class="jp-full-screen" tabindex="1" title="full screen">full screen</a></li>
+              <li><a href="javascript:;" class="jp-restore-screen" tabindex="1" title="restore screen">restore screen</a></li>
+              <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+              <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+            </ul>
         </div>
         <div class="jp-details">
           <ul>
@@ -54,7 +61,6 @@
         </div>
       </div>
     </div>
-    <h3></h3>
     <div id="event">
       <ul>
 
@@ -66,6 +72,14 @@
     </div>
   </div>
 </div>
-<script src="app/js/jPlayer.js"></script>
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="app/js/app.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.2/jplayer/jquery.jplayer.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.2/add-on/jplayer.playlist.js"></script>
+  <script src="script.js"></script>
+  <script src="popup.js"></script>
+  <script src="app/js/jPlayer.js"></script>
 </body>
 </html>
