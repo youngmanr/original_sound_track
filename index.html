@@ -11,7 +11,6 @@
   <script src="app/js/app.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.2/jplayer/jquery.jplayer.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.2/add-on/jplayer.playlist.js"></script>
-  <script src="app/js/jPlayer.js"></script>
   <script src="app/css/style.css"></script>
   <script src="script.js"></script>
 </head>
@@ -38,6 +37,7 @@
             <li><button type="button" class="jp-pause">pause</button></li>
             <li><button type="button" class="jp-mute" tabindex="1" title="mute">mute</button></li>
             <li><button type="button" class="jp-unmute" tabindex="1" title="unmute">unmute</button></li>
+            <li><button type="button" id="skip" class="jp-skip" tabindex="1" title="skip">skip</button></li>
           </ul>
           <div class="jp-volume-bar">
             <div class="jp-volume-bar-value"></div>
@@ -61,5 +61,6 @@
     </div>
   </div>
 </div>
+<script src="app/js/jPlayer.js"></script>
 </body>
 </html>
