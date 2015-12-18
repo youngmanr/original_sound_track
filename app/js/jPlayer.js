@@ -15,7 +15,8 @@ var myPlaylist = new jPlayerPlaylist({
   // ready: console.log('playlist loaded'),
   
   autoplay: true,
-  audioFullScreen: true // Allows the audio poster to go full screen via keyboard
+  audioFullScreen: true, // Allows the audio poster to go full screen via keyboard
+  useStateClassSkin: true
 });
 
 $("#skip").click(function() {

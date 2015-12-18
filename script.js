@@ -104,7 +104,7 @@ $(document).ready(function() {
               artist: song.artists[0].name,
               mp3: song.preview_url
             });
-          //playIfNotPlaying();
+          playIfNotPlaying();
           });
         });
       });
