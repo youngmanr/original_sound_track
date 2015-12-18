@@ -73,7 +73,7 @@ $(document).ready(function() {
     return new Promise(function(resolve, reject) {
       var cityName = positionData.cityName;
       var country = positionData.country;
-      var echonestUrl = 'http://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETBX8' +
+      var echonestUrl = 'https://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETBX8' +
                     '&format=json' +
                     '&artist_location=' + cityName + '+' + country +
                     '&min_familiarity=0.1' +
@@ -135,7 +135,7 @@ $(document).ready(function() {
   }
 
   function getEvent(positionData) {
-    var eventUrl = 'http://api.songkick.com/api/3.0/search/locations.json?location=geo:'+
+    var eventUrl = 'https://api.songkick.com/api/3.0/search/locations.json?location=geo:'+
       positionData.latitude + ',' + positionData.longitude +
       '&apikey=qMMmyACVKOgL3Kgb';
     $.getJSON(eventUrl, function(data){
@@ -145,7 +145,7 @@ $(document).ready(function() {
   };
 
   function upcomingEvents(metroAreaID) {
-    var eventUrl = 'http://api.songkick.com/api/3.0/metro_areas/' +
+    var eventUrl = 'https://api.songkick.com/api/3.0/metro_areas/' +
     metroAreaID +
     '/calendar.json?apikey=qMMmyACVKOgL3Kgb';
     $.getJSON(eventUrl, function(data){
