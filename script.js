@@ -118,7 +118,7 @@ $(document).ready(function() {
 
   function upcomingEvents(metroAreaID) {
     var eventUrl = 'http://api.songkick.com/api/3.0/metro_areas/' +
-    metroAreaID + 
+    metroAreaID +
     '/calendar.json?apikey=qMMmyACVKOgL3Kgb';
 
     $.getJSON(eventUrl, function(data){
@@ -128,4 +128,15 @@ $(document).ready(function() {
       });
     });
   };
+
+  $("#jquery_jplayer_1").jPlayer({
+    ready: function () {
+      $(this).jPlayer("setMedia", {
+        title: "Track title",
+        mp3: "https://p.scdn.co/mp3-preview/a204e7b2e7b0b7a786599be1de067d1ac9e9821c"
+      });
+    },
+    swfPath: "/js",
+    supplied: "mp3"
+  });
 });

@@ -13,6 +13,7 @@ describe('OST Player', function() {
 
   describe('is not playing a track', function() {
     it('should have a play button', function() {
+      browser.sleep(1000);
       expect(element(by.css('.jp-play')).isDisplayed()).toBe(true);
       expect(element(by.css('.jp-current-time')).getText()).toContain('00:00');
       expect(element(by.css('.jp-duration')).getText()).toContain('00:30');
@@ -30,7 +31,7 @@ describe('OST Player', function() {
 
     it('should not have a play button', function() {
       expect(element(by.css('.jp-play')).isDisplayed()).toBe(false);
-      browser.sleep(1400);
+      browser.sleep(1800);
       expect(element(by.css('.jp-current-time')).getText()).toContain('00:01');
     });
 
@@ -78,5 +79,16 @@ describe('OST Player', function() {
     it('should have an unmute button', function() {
       expect(element(by.css('.jp-unmute')).isDisplayed()).toBe(true);
     });
-  });   
+  });
+
+  describe('songkick returned data', function() {
+    beforeEach(function() {
+      element(by.css('#load-track')).click();
+      browser.sleep(5000);
+    });
+
+    it('should have multiple list items', function() {
+      expect(element(by.css('#event')).isDisplayed()).toBe(true);
+    });
+  });
 });
