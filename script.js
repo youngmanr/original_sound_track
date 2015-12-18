@@ -137,7 +137,7 @@ $(document).ready(function() {
   function getEvent(positionData) {
     var eventUrl = 'https://api.songkick.com/api/3.0/search/locations.json?location=geo:'+
       positionData.latitude + ',' + positionData.longitude +
-      '&apikey=qMMmyACVKOgL3Kgb&&jsoncallback=?';
+      '&apikey=qMMmyACVKOgL3Kgb' + '&jsoncallback=?';
     $.getJSON(eventUrl, function(data){
         var metroAreaID = data.resultsPage.results.location[0].metroArea.id;
         upcomingEvents(metroAreaID);
@@ -147,7 +147,7 @@ $(document).ready(function() {
   function upcomingEvents(metroAreaID) {
     var eventUrl = 'https://api.songkick.com/api/3.0/metro_areas/' +
     metroAreaID +
-    '/calendar.json?apikey=qMMmyACVKOgL3Kgb';
+    '/calendar.json?apikey=qMMmyACVKOgL3Kgb' + '&jsoncallback=?';
     $.getJSON(eventUrl, function(data){
       console.log(data.resultsPage);
       $.each(data.resultsPage.results.event, function (i, event) {
