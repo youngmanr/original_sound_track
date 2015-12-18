@@ -2,93 +2,47 @@ describe('OST Player', function() {
 
   beforeEach(function() {
       browser.get('http://localhost:8080');
+      // browser.executeScript('\
+      //   window.navigator.geolocation.getCurrentPosition = \
+      //       function(success){ \
+      //           var position = { \
+      //               "coords" : { \
+      //                   "latitude": "51.4995928",
+      //                   "longitude": "-0.1722515" \
+      //               } \
+      //           }; \
+      //           success(position); \
+      //       }');
+
+      browser.sleep(7000);
   });
 
-  describe('home page', function() {
-    it('has a title', function() {
+  describe('On initialization', function() {
+
+    it('has a title and working play/pause buttons', function() {
       expect(browser.getTitle()).toEqual('Original Sound Track');
-    });
-  });
-
-
-  describe('is not playing a track', function() {
-    it('should have a play button', function() {
-      browser.sleep(1000);
-      expect(element(by.css('.jp-play')).isDisplayed()).toBe(true);
-      expect(element(by.css('.jp-current-time')).getText()).toContain('00:00');
-      expect(element(by.css('.jp-duration')).getText()).toContain('00:30');
-    });
-
-    it('should not have a pause button', function() {
-      expect(element(by.css('.jp-pause')).isDisplayed()).toBe(false);
-    });
-  });
-
-  describe('is playing a track', function() {
-    beforeEach(function() {
-      element(by.css('.jp-play')).click();
-    });
-
-    it('should not have a play button', function() {
       expect(element(by.css('.jp-play')).isDisplayed()).toBe(false);
-      browser.sleep(1800);
-      expect(element(by.css('.jp-current-time')).getText()).toContain('00:01');
-    });
-
-    it('should have a pause button', function() {
       expect(element(by.css('.jp-pause')).isDisplayed()).toBe(true);
-    });
-  });
-
-  describe('is pausing a track', function() {
-    beforeEach(function() {
-      element(by.css('.jp-play')).click();
-      browser.sleep(2400);
+      expect(element(by.css('.jp-duration')).getText()).toContain('00:30');
+      var currentTime = element(by.css('.jp-current-time')).getText();
       element(by.css('.jp-pause')).click();
-    });
-
-    it('should have a play button', function() {
+      browser.sleep(2000);
+      expect(element(by.css('.jp-current-time')).getText()).toContain(currentTime);
       expect(element(by.css('.jp-play')).isDisplayed()).toBe(true);
-      expect(element(by.css('.jp-current-time')).getText()).toContain('00:02');
-    });
-
-    it('should not have a pause button', function() {
       expect(element(by.css('.jp-pause')).isDisplayed()).toBe(false);
     });
-  });
 
-  describe('track is not muted', function() {
-    it('should have a mute button', function() {
+    it('can be muted', function() {
       expect(element(by.css('.jp-mute')).isDisplayed()).toBe(true);
-    });
-
-    it('should not have an unmute button', function() {
       expect(element(by.css('.jp-unmute')).isDisplayed()).toBe(false);
-    });
-  });
-
-  describe('track is muted', function() {
-    beforeEach(function() {
       element(by.css('.jp-mute')).click();
-    });
-
-    it('should not have a mute button', function() {
       expect(element(by.css('.jp-mute')).isDisplayed()).toBe(false);
-    });
-
-    it('should have an unmute button', function() {
       expect(element(by.css('.jp-unmute')).isDisplayed()).toBe(true);
     });
-  });
 
-  describe('songkick returned data', function() {
-    beforeEach(function() {
-      element(by.css('#load-track')).click();
-      browser.sleep(5000);
+    it('songkick returned data should have multiple list items', function() {
+      expect(element(by.css('#event')).getText()).not.toBe('');
     });
 
-    it('should have multiple list items', function() {
-      expect(element(by.css('#event')).isDisplayed()).toBe(true);
-    });
   });
 });
