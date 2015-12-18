@@ -1,0 +1,21 @@
+body {
+	padding: 10%;
+	background-color: black;
+}
+
+#jp_container_1 {	
+	background-color: white;
+    border-radius: 20px;
+    -webkit-box-shadow: 10px 0px 32px -9px rgba(0,0,0,0.52);
+    -moz-box-shadow: 10px 0px 32px -9px rgba(0,0,0,0.52);
+    box-shadow: 10px 0px 32px -9px rgba(0,0,0,0.52);
+}
+
+#event {
+	padding-top: 25px;
+	background-color: white;
+    border-radius: 20px;  
+    -webkit-box-shadow: 10px 0px 32px -9px rgba(0,0,0,0.52);
+    -moz-box-shadow: 10px 0px 32px -9px rgba(0,0,0,0.52);
+    box-shadow: 10px 0px 32px -9px rgba(0,0,0,0.52);
+}
