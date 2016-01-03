@@ -164,6 +164,8 @@ https://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETB…=c
         var displayName = event.displayName;
         $("#event").append("<li><a href="+"\""+uri+"\""+
           "onClick=\"return popup(this, 'popup')\">"+displayName+"</a></li>");
+        $("#localEventsList").append("<li><a href="+"\""+uri+"\""+
+          "onClick=\"return popup(this, 'popup')\">"+displayName+"</a></li>");
       });
     });
   };

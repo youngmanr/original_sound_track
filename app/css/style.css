@@ -10,7 +10,52 @@ div {
     margin-bottom: 25px;
 }
 
-#jp_container_1 {	
+#currentLocation {
+    outline: 1px solid black;
+}
+
+#controls {
+    outline: 1px solid black;
+
+}
+
+#audiControls {
+    outline: 1px solid black;
+}
+
+#familiarity {
+    outline: 1px solid black;
+}
+
+#playingArtist {
+    outline: 1px solid black;
+}
+
+#playingArtistPoster{
+    outline: 1px solid black;
+}
+
+#playingArtistBiography{
+    outline: 1px solid black;
+}
+
+#playingArtistNews{
+    outline: 1px solid black;
+}
+
+#localEvents{
+    outline: 1px solid black;
+}
+
+#localEventsList{
+    outline: 1px solid black;
+}
+
+#localEventsMap{
+    outline: 1px solid black;
+}
+
+#jp_container_1 {
     margin-top: 25px;
     margin-bottom: 25px;
     background-color: white;
@@ -23,7 +68,7 @@ div {
 #event {
 	padding-top: 15px;
 	background-color: white;
-    border-radius: 20px;  
+    border-radius: 20px;
     -webkit-box-shadow: 10px 0px 32px -9px rgba(0,0,0,0.52);
     -moz-box-shadow: 10px 0px 32px -9px rgba(0,0,0,0.52);
     box-shadow: 10px 0px 32px -9px rgba(0,0,0,0.52);
