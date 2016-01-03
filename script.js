@@ -19,7 +19,8 @@ $(document).ready(function() {
     return new Promise(function(resolve, reject) {
       getLocation().then(function(position) {
 
-        console.log('THE FIRST PROMISE: ' + position);
+        console.log('THE FIRST PROMISE: (see object below)');
+        console.log(position);
 
         var latitude = position.coords.latitude;
         var longitude = position.coords.longitude;
@@ -79,7 +80,7 @@ $(document).ready(function() {
                     '&format=json' +
                     '&artist_location=' + cityName + '+' + country +
                     '&min_familiarity=' + familiarityTerm +
-                    '&description=' + genreTerm +
+                    '&description=third' + genreTerm +
                     '&sort=familiarity-desc&results=35' +
                     '&bucket=id:spotify' +
                     '&bucket=genre';
@@ -172,6 +173,7 @@ https://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETB…=c
     positionData = positionPromise;
     console.log('THE SECOND PROMISE: (see object below)');
     console.log(positionData);
+    document.getElementById("currentLocation").innerHTML = positionData.cityName;
     getArtists(positionData).then(function(artistsObjectPromise) {
       console.log('THE THIRD PROMISE: (see object below)');
       console.log(artistsObjectPromise);
