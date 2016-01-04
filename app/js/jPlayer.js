@@ -12,6 +12,9 @@ var myPlaylist = new jPlayerPlaylist({
   smoothPlayBar: true,
   keyEnabled: true,
 
+  play: function(e) {
+    updateDisplayedTrackTitle(e);
+  },
   // ready: console.log('playlist loaded'),
 
   autoplay: true,
@@ -23,3 +26,15 @@ $("#skip").click(function() {
   console.log("skip button");
   myPlaylist.next();
 });
+
+function updateDisplayedTrackTitle(e) {
+  var document = e.currentTarget.ownerDocument;
+  var artist = e.jPlayer.status.media.artist;  var artist = e.jPlayer.status.media.artist;
+  var title = e.jPlayer.status.media.title;
+
+
+  console.log(title);
+  console.log(artist);
+  document.getElementById("currentArtist").innerHTML = artist;
+  document.getElementById("currentTrack").innerHTML = title;
+}

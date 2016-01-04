@@ -12,7 +12,78 @@
   <h1>Header</h1>
 </header>
 <body>
+<div class= "container">
 <nav class="navbar navbar-default navbar-fixed-top"></nav>
+<div class="location" >
+  <h1 id="currentLocation"></h1>
+</div>
+
+<!-- Input Controls -->
+<div class="row">
+  <div class="col-sm-12">
+    <div id="controls">
+      <h4>Controls</h4>
+      <div class="col-sm-6">
+        <div id="audioControls">
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary">Play</button>
+          <button type="button" class="btn btn-primary">Pause</button>
+          <button type="button" class="btn btn-primary">Skip</button>
+          <button type="button" class="btn btn-primary">Mute</button>
+        </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div id="familiarity">
+          <h4>Familiarity</h4>
+          <label class="radio-inline"><input type="radio" name="optradio">Low</label>
+          <label class="radio-inline"><input type="radio" name="optradio">Medium</label>
+          <label class="radio-inline"><input type="radio" name="optradio">High</label>
+        </div>
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Playing Artist -->
+<div class="row">
+  <div id="playingArtist" class="col-sm-12">
+    <h4>Playing Artist</h4>
+    <h4 id="currentArtist">currentArtist</h4>
+    <h4 id="currentTrack">currentTrack</h4>
+    <div class="col-sm-4">
+      <div id="playingArtistPoster">Poster</div>
+    </div>
+    <div class="col-sm-8">
+      <div class="col-sm-8">
+        <div id="playingArtistBiography">Biography</div>
+      </div>
+      <div class="col-sm-8">
+        <div id="playingArtistNews">News</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Local Events -->
+<div class="row">
+  <div id="localEvents" class="col-sm-12">
+    <h4>Local Events</h4>
+    <div class="col-sm-6">
+      <div id="localEventsList">Events</div>
+        <ul>
+        </ul>
+      </div>
+    <div class="col-sm-6">
+        <div id="localEventsMap">Map</div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
 <div id="jquery_jplayer_1" class="jp-jplayer"></div>
 <div id="jp_container_1" class="jp-audio" role="application" aria-label="media player">
   <div class="jp-type-single">
@@ -60,6 +131,7 @@
       To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
     </div>
   </div>
+</div>
 </div>
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/angular/angular.js"></script>

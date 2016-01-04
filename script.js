@@ -19,7 +19,8 @@ $(document).ready(function() {
     return new Promise(function(resolve, reject) {
       getLocation().then(function(position) {
 
-        console.log('THE FIRST PROMISE: ' + position);
+        console.log('THE FIRST PROMISE: (see object below)');
+        console.log(position);
 
         var latitude = position.coords.latitude;
         var longitude = position.coords.longitude;
@@ -105,6 +106,8 @@ https://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETB…=c
 
         $.get(topTracksUrl, function(response){
           response.tracks.forEach(function(song) {
+            //console.log("song (see below)");
+            //console.log(song);
             myPlaylist.add({
               title: song.name,
               artist: song.artists[0].name,
@@ -163,6 +166,8 @@ https://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETB…=c
         var displayName = event.displayName;
         $("#event").append("<li><a href="+"\""+uri+"\""+
           "onClick=\"return popup(this, 'popup')\">"+displayName+"</a></li>");
+        $("#localEventsList").append("<li><a href="+"\""+uri+"\""+
+          "onClick=\"return popup(this, 'popup')\">"+displayName+"</a></li>");
       });
     });
   };
@@ -172,6 +177,7 @@ https://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETB…=c
     positionData = positionPromise;
     console.log('THE SECOND PROMISE: (see object below)');
     console.log(positionData);
+    document.getElementById("currentLocation").innerHTML = positionData.cityName;
     getArtists(positionData).then(function(artistsObjectPromise) {
       console.log('THE THIRD PROMISE: (see object below)');
       console.log(artistsObjectPromise);
