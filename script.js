@@ -103,7 +103,8 @@ https://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETB…=c
         var spotifyId = spotifyArtistId(artist);
         var countryCode = positionData.countryCode;
         var topTracksUrl = "https://api.spotify.com/v1/artists/" + spotifyId + "/top-tracks?country=" + countryCode;
-
+        
+        
         $.get(topTracksUrl, function(response){
           response.tracks.forEach(function(song) {
             //console.log("song (see below)");
@@ -111,7 +112,8 @@ https://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETB…=c
             myPlaylist.add({
               title: song.name,
               artist: song.artists[0].name,
-              mp3: song.preview_url
+              mp3: song.preview_url,
+              poster: song.album.images[0].url
             });
           playIfNotPlaying();
           });
