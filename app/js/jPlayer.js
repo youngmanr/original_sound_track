@@ -48,11 +48,15 @@ function updateDisplayedTrackTitle(e) {
   var artist = e.jPlayer.status.media.artist; var artist = e.jPlayer.status.media.artist;
   var title = e.jPlayer.status.media.title;
   var poster = e.jPlayer.status.media.poster;
+  var bio = e.jPlayer.status.media.bio;
 
   console.log(title);
   console.log(artist);
   console.log(poster);
+  console.log(bio);
   document.getElementById("currentArtist").innerHTML = artist;
   document.getElementById("currentTrack").innerHTML = title;
   document.getElementById("currentPoster").src = poster;
+  document.getElementById("playingArtistBiography").innerHTML = bio;
+  
 }
