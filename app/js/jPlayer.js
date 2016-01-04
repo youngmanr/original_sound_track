@@ -1,6 +1,12 @@
 var myPlaylist = new jPlayerPlaylist({
   jPlayer: "#jquery_jplayer_1",
-  cssSelectorAncestor: "#jp_container_1"
+  cssSelectorAncestor: "",
+  cssSelector: {
+          title: "#title",
+          play: "#play",
+          pause: "#pause",
+          stop: "#stop",
+  }
 },
 [], //EMPTY PLAYLIST
 {
@@ -20,6 +26,16 @@ var myPlaylist = new jPlayerPlaylist({
   autoplay: true,
   audioFullScreen: true, // Allows the audio poster to go full screen via keyboard
   useStateClassSkin: true
+});
+
+$("#play").click(function() {
+  console.log("play button");
+  myPlaylist.play();
+});
+
+$("#pause").click(function() {
+  console.log("skip button");
+  myPlaylist.pause();
 });
 
 $("#skip").click(function() {
