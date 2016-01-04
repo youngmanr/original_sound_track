@@ -49,14 +49,21 @@ function updateDisplayedTrackTitle(e) {
   var title = e.jPlayer.status.media.title;
   var poster = e.jPlayer.status.media.poster;
   var bio = e.jPlayer.status.media.bio;
+  var news = e.jPlayer.status.media.news;
 
   console.log(title);
   console.log(artist);
   console.log(poster);
   console.log(bio);
+  console.log(news);
   document.getElementById("currentArtist").innerHTML = artist;
   document.getElementById("currentTrack").innerHTML = title;
   document.getElementById("currentPoster").src = poster;
   document.getElementById("playingArtistBiography").innerHTML = bio;
-  
+
+  $('#playingArtistNews').html(""); // Clears previous articles before adding new
+
+  for (var i = 0; i < news.length && i < 10; i++) {
+    $('#playingArtistNews').append("<li><a href="+"\""+news[i].url+"\""+"onClick=\"return popup(this, 'popup')\">"+news[i].name+"</a></li>");
+  };
 }

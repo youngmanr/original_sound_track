@@ -73,18 +73,20 @@ $(document).ready(function() {
   function getArtists(positionData, familiarity, genre) {
     return new Promise(function(resolve, reject) {
       var familiarityTerm = familiarity || '0.1';
-      var genreTerm = genre || '*';
+      // var genreTerm = genre || '*';
       var cityName = positionData.cityName;
       var country = positionData.country;
       var echonestUrl = 'https://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETBX8' +
                     '&format=json' +
                     '&artist_location=' + cityName + '+' + country +
                     '&min_familiarity=' + familiarityTerm +
-                    '&description=' + genreTerm +
+                    // '&description=' + genreTerm +
                     '&sort=familiarity-desc&results=35' +
                     '&bucket=id:spotify' +
                     '&bucket=genre' +
-                    '&bucket=biographies';
+                    '&bucket=biographies' +
+                    '&bucket=artist_location' +
+                    '&bucket=news';
 
       console.log('echonestURL ', echonestUrl)
 https://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETB…=classical&sort=familiarity-desc&results=35&bucket=id:spotify&bucket=genre
@@ -104,8 +106,8 @@ https://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETB…=c
         var spotifyId = spotifyArtistId(artist);
         var countryCode = positionData.countryCode;
         var topTracksUrl = "https://api.spotify.com/v1/artists/" + spotifyId + "/top-tracks?country=" + countryCode;
-        
-        
+
+
         $.get(topTracksUrl, function(response){
           response.tracks.forEach(function(song) {
             //console.log("song (see below)");
@@ -116,7 +118,8 @@ https://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETB…=c
               artist: song.artists[0].name,
               mp3: song.preview_url,
               poster: song.album.images[0].url,
-              bio: artist.biographies[0].text
+              bio: artist.biographies[0].text,
+              news: artist.news
             });
           playIfNotPlaying();
           });
