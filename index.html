@@ -2,75 +2,92 @@
 <html lang="en" ng-app="OriginalSoundTrack">
 <head>
   <meta charset="UTF-8">
-  <title>Original Sound Track</title>
-
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link type="text/css" href="app/css/skin.css" rel="stylesheet">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="app/css/style.css">
+  <title>Original Sound Track</title>
 </head>
 <header>
 </header>
 <body>
-<div class= "container">
+<!-- <div class= "container"> -->
 <nav class="navbar navbar-default navbar-fixed-top"></nav>
-<div class="location" >
+<div class="container-fluid">
   <h1 id="currentLocation"></h1>
 </div>
 
 <!-- Input Controls -->
-<div id="jquery_jplayer_1" class="jp-jplayer"></div>
-<div class="row">
-  <div class="col-sm-12">
-    <div id="controls">
-      <h4>Controls</h4>
-      <div class="col-sm-6">
-        <div id="audioControls">
-        <div class="btn-group">
-          <button type="button" id="play" class="btn btn-primary glyphicon glyphicon-play"> Play</button>
-          <button type="button" id="pause" class="btn btn-primary glyphicon glyphicon-pause"> Pause</button>
-          <button type="button" id="skip" class="btn btn-primary  glyphicon glyphicon-step-forward"> Skip</button>
-        </div>
+<div class="container-fluid">
+  <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+  <div id="controls">
+    <!-- <div class="container"> -->
+      <div class="row">
+        <div class="col-lg-12">
+          <h4>Controls</h4>
         </div>
       </div>
-      <div class="col-sm-6">
-        <div id="familiarity">
+      <!-- <div id="audioControls"> -->
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <div class="btn-group">
+            <button type="button" id="play" class="btn btn-primary btn-md glyphicon glyphicon-play"> Play</button>
+            <button type="button" id="pause" class="btn btn-primary btn-md glyphicon glyphicon-pause"> Pause</button>
+            <button type="button" id="skip" class="btn btn-primary btn-md glyphicon glyphicon-step-forward"> Skip</button>
+          </div>
+        </div>  
+        <div class="col-xs-12 col-md-6">
+          <!-- <div id="familiarity"> -->
           <h4>Familiarity</h4>
           <label class="radio-inline">
             <input id="familiarityLow" type="radio" name="optFamiliarity">
-              Low
-            </label>
+            Low
+          </label>
           <label class="radio-inline">
             <input id="familiarityMedium" type="radio" name="optFamiliarity">
-            Medium
+              Medium
           </label>
           <label class="radio-inline">
             <input id="familiarityHigh" type="radio" name="optFamiliarity">
-            High
+              High
           </label>
+          <!-- </div> -->
         </div>
       </div>
-      <div style="clear: both;"></div>
-    </div>
+      <!-- </div> -->
+    <!-- </div>     -->
+    <div style="clearfix"></div>
   </div>
 </div>
 
 <!-- Playing Artist -->
-<div class="row">
-  <div id="playingArtist" class="col-sm-12">
-    <h4>Playing Artist</h4>
-    <h4 id="currentArtist">currentArtist</h4>
-    <h4 id="currentTrack">currentTrack</h4>
-    <div class="col-sm-4">
-      <div id="playingArtistPoster">
-        <img id="currentPoster" class="img-rounded" alt="Artist image" width="350" height="350">
+<div id="playingArtist">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+      <h4>Now playing:
+        <p><span id="currentTrack">currentTrack</span><i> by </i><span id="currentArtist">currentArtist</span></p></h4>
+      <!-- <h4 id="currentArtist">currentArtist</h4>
+      <h4 id="currentTrack">currentTrack</h4> -->
+        <div id="playingArtistPoster">
+          <div class="col-md-4 col-sm-6">
+          <!-- <img id="currentPoster" class="img-rounded" alt="Artist image" width="350" height="350"> -->
+            <img id="currentPoster" class="img-responsive" alt="Album art">
+          </div>
+          
+          <div class="col-md-4 col-sm-6">
+            <div id="playingArtistBiography">          
+            </div>
+          </div>
+
+        </div>
       </div>
-    </div>
-    <div class="col-sm-8">
-      <div class="col-sm-8">
-        <div id="playingArtistBiography"></div>
+    </div>  
       </div>
-      <div class="col-sm-8">
+        <!-- <div class="col-sm-8"> -->
         <div id="playingArtistNews">News</div>
+        </div>
       </div>
     </div>
   </div>
@@ -78,21 +95,21 @@
 
 <!-- Local Events -->
 <div class="row">
-  <div id="localEvents" class="col-sm-12">
+  <!-- <div id="localEvents" class="col-sm-12"> -->
     <h4>Local Events</h4>
-    <div class="col-sm-6">
+    <!-- <div class="col-sm-6"> -->
       <div id="localEventsList">Events</div>
         <ul>
         </ul>
       </div>
-    <div class="col-sm-6">
+    <!-- <div class="col-sm-6"> -->
         <div id="localEventsMap">Map</div>
     </div>
   </div>
 </div>
 
 </div>
-</div>
+<!-- </div> -->
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-resource/angular-resource.js"></script>

@@ -10,16 +10,19 @@ div {
     margin-bottom: 25px;
 }
 
+#container-fluid {
+    outline: 1px solid black;
+}
+
 #currentLocation {
     outline: 1px solid black;
 }
 
 #controls {
     outline: 1px solid black;
-
 }
 
-#audiControls {
+#audioControls {
     outline: 1px solid black;
 }
 
@@ -31,27 +34,31 @@ div {
     outline: 1px solid black;
 }
 
-#playingArtistPoster{
+/*#playingArtistPoster{
+    outline: 1px solid black;
+}*/
+
+#currentPoster {
     outline: 1px solid black;
 }
 
-#playingArtistBiography{
+#playingArtistBiography {
     outline: 1px solid black;
 }
 
-#playingArtistNews{
+#playingArtistNews {
     outline: 1px solid black;
 }
 
-#localEvents{
+#localEvents {
     outline: 1px solid black;
 }
 
-#localEventsList{
+#localEventsList {
     outline: 1px solid black;
 }
 
-#localEventsMap{
+#localEventsMap {
     outline: 1px solid black;
 }
 
