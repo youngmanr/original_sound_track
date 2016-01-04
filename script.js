@@ -118,7 +118,7 @@ https://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETB…=c
               artist: song.artists[0].name,
               mp3: song.preview_url,
               poster: song.album.images[0].url,
-              bio: artist.biographies[0].text,
+              bio: (artist.biographies.length !== 0 ) ? artist.biographies[0].text : "No biographies available",
               news: artist.news
             });
           playIfNotPlaying();

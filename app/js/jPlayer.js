@@ -51,15 +51,15 @@ function updateDisplayedTrackTitle(e) {
   var bio = e.jPlayer.status.media.bio;
   var news = e.jPlayer.status.media.news;
 
-  console.log(title);
-  console.log(artist);
-  console.log(poster);
+
   console.log(bio);
-  console.log(news);
+
   document.getElementById("currentArtist").innerHTML = artist;
   document.getElementById("currentTrack").innerHTML = title;
   document.getElementById("currentPoster").src = poster;
-  document.getElementById("playingArtistBiography").innerHTML = bio;
+  document.getElementById("playingArtistBiography").innerHTML = bio.substring(0,500) + '...';
+  //$("playingArtistBiography").text(bio.substring(0,150) + '...');
+
 
   $('#playingArtistNews').html(""); // Clears previous articles before adding new
 
