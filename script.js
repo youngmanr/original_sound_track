@@ -80,7 +80,7 @@ $(document).ready(function() {
                     '&format=json' +
                     '&artist_location=' + cityName + '+' + country +
                     '&min_familiarity=' + familiarityTerm +
-                    '&description=third' + genreTerm +
+                    '&description=' + genreTerm +
                     '&sort=familiarity-desc&results=35' +
                     '&bucket=id:spotify' +
                     '&bucket=genre';
