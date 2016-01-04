@@ -19,6 +19,8 @@ $(document).ready(function() {
     updateFamiliarity("0.9");
   });
 
+  $('#familiarityMedium').prop('checked', true);
+
   function updateFamiliarity(f) {
     myPlaylist.remove();
     getArtists(positionData, f).then(function(artistsObjectPromise) {
@@ -96,14 +98,14 @@ $(document).ready(function() {
   // MAKES ECHONEST API CALL BASED ON cityName AND country
   function getArtists(positionData, familiarity, genre) {
     return new Promise(function(resolve, reject) {
-      var familiarityTerm = familiarity || '0.1';
+      var familiarityTerm = familiarity || '0.5';
   //    var genreTerm = genre || '*';
       var cityName = positionData.cityName;
       var country = positionData.country;
       var echonestUrl = 'https://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETBX8' +
                     '&format=json' +
                     '&artist_location=' + cityName + '+' + country +
-                    '&min_familiarity=' + familiarityTerm +
+                    '&max_familiarity=' + familiarityTerm +
                     //'&description=' + genreTerm +
                     '&sort=familiarity-desc&results=35' +
                     '&bucket=id:spotify'; // +
