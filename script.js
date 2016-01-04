@@ -106,12 +106,13 @@ https://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETB…=c
 
         $.get(topTracksUrl, function(response){
           response.tracks.forEach(function(song) {
-            //console.log("song (see below)");
-            //console.log(song);
+            console.log("song (see below)");
+            console.log(song);
             myPlaylist.add({
               title: song.name,
               artist: song.artists[0].name,
-              mp3: song.preview_url
+              mp3: song.preview_url,
+              poster: song.album.images[0].url
             });
           playIfNotPlaying();
           });

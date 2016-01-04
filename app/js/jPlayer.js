@@ -45,12 +45,14 @@ $("#skip").click(function() {
 
 function updateDisplayedTrackTitle(e) {
   var document = e.currentTarget.ownerDocument;
-  var artist = e.jPlayer.status.media.artist;  var artist = e.jPlayer.status.media.artist;
+  var artist = e.jPlayer.status.media.artist; var artist = e.jPlayer.status.media.artist;
   var title = e.jPlayer.status.media.title;
-
+  var poster = e.jPlayer.status.media.poster;
 
   console.log(title);
   console.log(artist);
+  console.log(poster);
   document.getElementById("currentArtist").innerHTML = artist;
   document.getElementById("currentTrack").innerHTML = title;
+  document.getElementById("currentPoster").src = poster;
 }
