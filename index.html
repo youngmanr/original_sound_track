@@ -7,59 +7,40 @@
   <link type="text/css" href="app/css/skin.css" rel="stylesheet">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="app/css/style.css">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lobster" />
   <title>Original Sound Track</title>
 </head>
 <header>
 </header>
 <body>
 <!-- <div class= "container"> -->
-<nav class="navbar navbar-default navbar-fixed-top"></nav>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <ul>
+      <li><a id="AppName" href="#">App name</a></li>
+      
+      <li><div><a class="navBarText" href="#">About</a></div></li>
+      <li>
+        <div class="dropdown">
+          <a href="#" data-toggle="dropdown" class="dropdown-toggle">Familiarity <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#" id="familiarityLow" name="optFamiliarity">Low</a></li>
+              <li><a href="#" id="familiarityMedium" name="optFamiliarity">Medium</a></li>
+              <li><a href="#" id="familiarityHigh" name="optFamiliarity">High</a></li>
+            </ul>
+        </div>
+      </li>
+    </ul> 
+  </nav>
+
 <div class="container-fluid">
   <h1 id="currentLocation"></h1>
 </div>
+
 
 <!-- Input Controls -->
 <div class="container-fluid">
 <div id="jquery_jplayer_1" class="jp-jplayer"></div>
 <div id="controls">
-  <!-- <div class="container"> -->
-  <div class="row">
-  <div class="col-lg-12">
-    <h4>Controls</h4>
-  </div>
-  </div>
-  <!-- <div id="audioControls"> -->
-  <div class="row">
-  <div class="col-xs-12 col-md-6">
-  <div class="btn-group">
-    <button type="button" id="play" class="btn btn-primary btn-md glyphicon glyphicon-play"> Play</button>
-    <button type="button" id="pause" class="btn btn-primary btn-md glyphicon glyphicon-pause"> Pause</button>
-    <button type="button" id="skip" class="btn btn-primary btn-md glyphicon glyphicon-step-forward"> Skip</button>
-  </div>
-  </div>
-  <div class="col-xs-12 col-md-6">
-  <!-- <div id="familiarity"> -->
-  <h4>Familiarity</h4>
-  <label class="radio-inline">
-    <input id="familiarityLow" type="radio" name="optFamiliarity">
-    Low
-  </label>
-  <label class="radio-inline">
-    <input id="familiarityMedium" type="radio" name="optFamiliarity">
-    Medium
-  </label>
-  <label class="radio-inline">
-    <input id="familiarityHigh" type="radio" name="optFamiliarity">
-    High
-  </label>
-  <!-- </div> -->
-  </div>
-  </div>
-  <!-- </div> -->
-  <!-- </div>     -->
-  <div style="clearfix"></div>
-</div>
-</div>
 
 <!-- Playing Artist -->
 <div class="container-fluid">
@@ -109,6 +90,11 @@
   </div>
 </div>
 
+<form id='searchBar' class="form-inline">
+  <input type="text" class='form-control' placeholder="Search places..." id='searchVal'></input>
+  <button type="button" id="submitSearch">SEARCH</button>
+</form>
+
 <!-- Local Events -->
 <div class="container-fluid">
 <div id="localEvents">
@@ -130,6 +116,29 @@
 </div>
 </div>
 
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container-fluid">
+      <div class="row">
+          <div class="btn-group">
+            <button type="button" id="play" class="btn btn-default btn-lg">
+          <span class="glyphicon glyphicon-chevron-right"></span> Play</button>
+            <button type="button" id="pause" class="btn btn-default btn-lg">
+          <span class="glyphicon glyphicon-pause"></span> Pause</button>
+            <button type="button" id="skip" class="btn btn-default btn-lg">
+          <span class="glyphicon glyphicon-share-alt"></span> Skip</button>
+          </div>
+      </div>
+      <div class="row">
+          <div class="now-playing">
+              <p><span id="currentTrack">currentTrack</span><i> by </i><span id="currentArtist">currentArtist</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+</nav>
+
+</div>
+
 <!-- </div> -->
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/angular/angular.js"></script>
@@ -137,7 +146,6 @@
 <script src="app/js/app.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.2/jplayer/jquery.jplayer.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.2/add-on/jplayer.playlist.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <script src="script.js"></script>
 <script src="popup.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>

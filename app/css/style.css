@@ -3,11 +3,70 @@ body {
 	background-color: #F0F8FF;
 }
 
-
 div {
-    padding: auto;
-    margin-top: 25px;
-    margin-bottom: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.navbar-default ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+}
+
+.navbar-default ul li {
+    float: left;
+    position: relative;
+}
+
+.navbar-default #AppName {
+  font-family: Lobster, Monospace;
+  font-size: 24px;
+  margin-left: 15px;
+}
+
+.navbar-default li a {
+    font-size: 16px;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 14px;
+    text-decoration: none;
+    position:relative;
+}
+
+.navbar-default li a:hover {
+    background-color: #000000;
+    color: white;
+}
+
+
+.navbar-default {
+    background-color: black;
+    border-color: #E7E7E7;
+    color: white;
+}
+
+.navbar-inverse {
+    background-color: #607B8B;
+    border-color: #E7E7E7;
+}
+
+.row {
+    margin: 0 0;
+    text-align: center;
+
+}
+.btn-group {
+    margin-bottom: 5px;
+
+}
+
+.now-playing {
+    font-size: 18px;
+    font-family: Lobster, Monospace;
+    color: white;
 }
 
 .spinner {
@@ -79,6 +138,7 @@ div {
 #localEvents {
     outline: 1px solid black;
     padding: 1%;
+    margin-bottom: 120px;
 }
 
 #localEventsTitle {

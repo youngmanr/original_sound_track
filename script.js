@@ -33,20 +33,36 @@ $(document).ready(function() {
   function getLocation() { // Nb. Error handling has been removed
     return new Promise(function(resolve, reject) {
       navigator.geolocation.getCurrentPosition(function(position) {
+        positionData.latitude = position.coords.latitude;
+        positionData.longitude = position.coords.longitude;
         resolve(position);
+      });
+    });
+  };
+
+  function searchLocation() {
+    return new Promise(function(resolve, reject) {
+      var geocoder = new google.maps.Geocoder();
+      var searchTerms = $('#searchVal').val();
+      geocoder.geocode( { 'address': searchTerms}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            console.log('searchLocation Result---------' ,results);
+            positionData.latitude = results[0].geometry.location.lat();
+            positionData.longitude = results[0].geometry.location.lng();
+            resolve(positionData);
+          } else {
+          alert("Geocode was not successful for the following reason: " + status);
+        };
       });
     });
   };
 
   function showPosition() {
     return new Promise(function(resolve, reject) {
-      getLocation().then(function(position) {
+      // getLocation().then(function(position) {
 
-        console.log('THE FIRST PROMISE: (see object below)');
-        console.log(position);
-
-        var latitude = position.coords.latitude;
-        var longitude = position.coords.longitude;
+        var latitude = positionData.latitude;
+        var longitude = positionData.longitude;
         var geolocUrl = 'https://maps.googleapis.com/maps/api/geocode/json?&language=en&latlng=' + latitude + "," + longitude
                          '&key=AIzaSyAGWnWE0GeEPpCYmiy2mXZ9RnDGf_n3JQA';
 
@@ -87,7 +103,7 @@ $(document).ready(function() {
           positionData.longitude = longitude;
           resolve(positionData)
         });
-      });
+      // });
     });
   };
 
@@ -131,17 +147,21 @@ $(document).ready(function() {
 
 
         $.get(topTracksUrl, function(response){
-          var randomTrack = response.tracks[Math.floor(Math.random() * response.tracks.length)];
-            myPlaylist.add({
-              title: randomTrack.name,
-              artist: randomTrack.artists[0].name,
-              mp3: randomTrack.preview_url,
-              poster: randomTrack.album.images[0].url,
-              // bio: (artist.biographies.length !== 0 ) ? artist.biographies[0].text : "No biographies available",
-              bio: findBestBio(artist.biographies),
-              news: artist.news
-          // playIfNotPlaying();
-          });
+          if(response.tracks.length > 0) {
+            var randomNum = Math.floor(Math.random() * response.tracks.length);
+            var randomTrack = response.tracks[randomNum];
+            console.log(randomTrack);
+              myPlaylist.add({
+                title: randomTrack.name,
+                artist: randomTrack.artists[0].name,
+                mp3: randomTrack.preview_url,
+                poster: randomTrack.album.images[0].url,
+                // bio: (artist.biographies.length !== 0 ) ? artist.biographies[0].text : "No biographies available",
+                bio: findBestBio(artist.biographies),
+                news: artist.news
+            // playIfNotPlaying();
+            });
+          };
         });
       });
       resolve('No data to return');
@@ -158,7 +178,7 @@ $(document).ready(function() {
     if(result) {
       return result
     } else {
-      return {text: "No biographies available"}
+      return "No biography available"
     };
   };
 
@@ -197,6 +217,7 @@ $(document).ready(function() {
   };
 
   function getUpcomingEvents(metroAreaID) {
+    $("#localEventsList").html("");
     var eventUrl = 'https://api.songkick.com/api/3.0/metro_areas/' +
     metroAreaID +
     '/calendar.json?apikey=qMMmyACVKOgL3Kgb' + '&jsoncallback=?';
@@ -212,6 +233,9 @@ $(document).ready(function() {
     });
   };
 
+  $("#submitSearch").click(function() {
+    searchByLocation();
+  });
 
   //MODAL SCALING
   $('#myModal').on('show.bs.modal', function () {
@@ -219,22 +243,54 @@ $(document).ready(function() {
   });
 
   // CALLING THE FUNCTIONS IN A CHAIN
-  showPosition().then(function(positionPromise) {
-    positionData = positionPromise;
-    console.log('THE SECOND PROMISE: (see object below)');
-    console.log(positionData);
-    document.getElementById("currentLocation").innerHTML = positionData.cityName;
-    getArtists(positionData).then(function(artistsObjectPromise) {
-      console.log('THE THIRD PROMISE: (see object below)');
-      console.log(artistsObjectPromise);
-      getArtistTopTracks(artistsObjectPromise, positionData).then(function(topTracksPromise) {
-        console.log('THE FOURTH PROMISE: ' + topTracksPromise);
-        console.log("MyPlaylist (see below)");
-        console.log(myPlaylist);
+  myPlaylist.remove();
+  getLocation().then(function(getLocPromise) {
+    console.log('THE FIRST PROMISE: (see object below)');
+    console.log(getLocPromise);
+    showPosition().then(function(positionPromise) {
+      positionData = positionPromise;
+      console.log('THE SECOND PROMISE: (see object below)');
+      console.log(positionData);
+      document.getElementById("currentLocation").innerHTML = positionData.cityName;
+      getArtists(positionData).then(function(artistsObjectPromise) {
+        console.log('THE THIRD PROMISE: (see object below)');
+        console.log(artistsObjectPromise);
+        getArtistTopTracks(artistsObjectPromise, positionData).then(function(topTracksPromise) {
+          console.log('THE FOURTH PROMISE: ' + topTracksPromise);
+          console.log("MyPlaylist (see below)");
+          console.log(myPlaylist);
+        });
       });
     });
     getSongKickMetroID(positionData).then(function(metroAreaIDPromise) {
       getUpcomingEvents(metroAreaIDPromise);
     });
   });
+
+  function searchByLocation() {
+    myPlaylist.remove();
+    searchLocation().then(function(getLocPromise) {
+      console.log('THE FIRST PROMISE: (see object below)');
+      console.log(getLocPromise);
+      showPosition().then(function(positionPromise) {
+        positionData = positionPromise;
+        console.log('THE SECOND PROMISE: (see object below)');
+        console.log(positionData);
+        document.getElementById("currentLocation").innerHTML = positionData.cityName;
+        getArtists(positionData).then(function(artistsObjectPromise) {
+          console.log('THE THIRD PROMISE: (see object below)');
+          console.log(artistsObjectPromise);
+          getArtistTopTracks(artistsObjectPromise, positionData).then(function(topTracksPromise) {
+            console.log('THE FOURTH PROMISE: ' + topTracksPromise);
+            console.log("MyPlaylist (see below)");
+            console.log(myPlaylist);
+          });
+        });
+      });
+      getSongKickMetroID(positionData).then(function(metroAreaIDPromise) {
+        getUpcomingEvents(metroAreaIDPromise);
+      });
+    });
+  };
+  
 });
