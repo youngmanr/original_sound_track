@@ -42,7 +42,8 @@ $(document).ready(function() {
   function searchLocation() {
     return new Promise(function(resolve, reject) {
       var geocoder = new google.maps.Geocoder();
-      geocoder.geocode( { 'address': 'Manchester, United Kingdom'}, function(results, status) {
+      var searchTerms = $('#searchVal').val();
+      geocoder.geocode( { 'address': searchTerms}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
             console.log('searchLocation Result---------' ,results);
             positionData.latitude = results[0].geometry.location.lat();
@@ -145,17 +146,21 @@ $(document).ready(function() {
 
 
         $.get(topTracksUrl, function(response){
-          var randomTrack = response.tracks[Math.floor(Math.random() * response.tracks.length)];
-            myPlaylist.add({
-              title: randomTrack.name,
-              artist: randomTrack.artists[0].name,
-              mp3: randomTrack.preview_url,
-              poster: randomTrack.album.images[0].url,
-              // bio: (artist.biographies.length !== 0 ) ? artist.biographies[0].text : "No biographies available",
-              bio: findBestBio(artist.biographies),
-              news: artist.news
-          // playIfNotPlaying();
-          });
+          if(response.tracks.length > 0) {
+            var randomNum = Math.floor(Math.random() * response.tracks.length);
+            var randomTrack = response.tracks[randomNum];
+            console.log(randomTrack);
+              myPlaylist.add({
+                title: randomTrack.name,
+                artist: randomTrack.artists[0].name,
+                mp3: randomTrack.preview_url,
+                poster: randomTrack.album.images[0].url,
+                // bio: (artist.biographies.length !== 0 ) ? artist.biographies[0].text : "No biographies available",
+                bio: findBestBio(artist.biographies),
+                news: artist.news
+            // playIfNotPlaying();
+            });
+          };
         });
       });
       resolve('No data to return');
@@ -172,7 +177,7 @@ $(document).ready(function() {
     if(result) {
       return result
     } else {
-      return "No biographies available"
+      return "No biography available"
     };
   };
 
@@ -219,16 +224,22 @@ $(document).ready(function() {
       $.each(data.resultsPage.results.event, function (i, event) {
         var uri = event.uri;
         var displayName = event.displayName;
-        $("#event").append("<li><a href="+"\""+uri+"\""+
-          "onClick=\"return popup(this, 'popup')\">"+displayName+"</a></li>");
+        // $("#event").append("<li><a href="+"\""+uri+"\""+
+        //   "onClick=\"return popup(this, 'popup')\">"+displayName+"</a></li>");
         $("#localEventsList").append("<li><a href="+"\""+uri+"\""+
           "onClick=\"return popup(this, 'popup')\">"+displayName+"</a></li>");
       });
     });
   };
 
+  $("#submitSearch").click(function() {
+    searchByLocation();
+  });
+
   // CALLING THE FUNCTIONS IN A CHAIN
-  searchLocation().then(function(getLocPromise) {
+
+
+  getLocation().then(function(getLocPromise) {
     console.log('THE FIRST PROMISE: (see object below)');
     console.log(getLocPromise);
     showPosition().then(function(positionPromise) {
@@ -250,4 +261,33 @@ $(document).ready(function() {
       getUpcomingEvents(metroAreaIDPromise);
     });
   });
+
+
+  function searchByLocation() {
+    myPlaylist.remove();
+
+    searchLocation().then(function(getLocPromise) {
+      console.log('THE FIRST PROMISE: (see object below)');
+      console.log(getLocPromise);
+      showPosition().then(function(positionPromise) {
+        positionData = positionPromise;
+        console.log('THE SECOND PROMISE: (see object below)');
+        console.log(positionData);
+        document.getElementById("currentLocation").innerHTML = positionData.cityName;
+        getArtists(positionData).then(function(artistsObjectPromise) {
+          console.log('THE THIRD PROMISE: (see object below)');
+          console.log(artistsObjectPromise);
+          getArtistTopTracks(artistsObjectPromise, positionData).then(function(topTracksPromise) {
+            console.log('THE FOURTH PROMISE: ' + topTracksPromise);
+            console.log("MyPlaylist (see below)");
+            console.log(myPlaylist);
+          });
+        });
+      });
+      getSongKickMetroID(positionData).then(function(metroAreaIDPromise) {
+        getUpcomingEvents(metroAreaIDPromise);
+      });
+    });
+  };
+
 });
