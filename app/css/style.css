@@ -8,23 +8,24 @@ div {
     margin-bottom: 10px;
 }
 
-
-
 .navbar-default ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
     background-color: #333;
 }
 
-.navbar-default li {
+.navbar-default ul li {
     float: left;
+    position: relative;
 }
+
 .navbar-default #AppName {
   font-family: Lobster, Monospace;
-  font-size: 24px;  
+  font-size: 24px;
+  margin-left: 15px;
 }
+
 .navbar-default li a {
     font-size: 16px;
     display: inline-block;
@@ -32,19 +33,17 @@ div {
     text-align: center;
     padding: 14px 14px;
     text-decoration: none;
-}
-
-.navbar-default .navBarText {
-    margin-top: 6px;
+    position:relative;
 }
 
 .navbar-default li a:hover {
-    background-color: #111;
+    background-color: #000000;
+    color: white;
 }
 
 
 .navbar-default {
-    background-color: #607B8B;
+    background-color: black;
     border-color: #E7E7E7;
     color: white;
 }
@@ -56,23 +55,18 @@ div {
 
 .row {
     margin: 0 0;
-    width: 100%;
-    display: inline-block;
+    text-align: center;
 
 }
 .btn-group {
-    float: left;
-    width: 150px;
-    margin-top: 20px;
-    margin-left: 10%;
+    margin-bottom: 5px;
 
 }
 
 .now-playing {
-    float: right;
-    font-size: 16px;
-    width: 400px;
-
+    font-size: 18px;
+    font-family: Lobster, Monospace;
+    color: white;
 }
 
 #container-fluid {
@@ -124,6 +118,7 @@ div {
 #localEvents {
     outline: 1px solid black;
     padding: 1%;
+    margin-bottom: 120px;
 }
 
 #localEventsTitle {
