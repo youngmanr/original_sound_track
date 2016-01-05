@@ -48,11 +48,22 @@ function updateDisplayedTrackTitle(e) {
   var artist = e.jPlayer.status.media.artist; var artist = e.jPlayer.status.media.artist;
   var title = e.jPlayer.status.media.title;
   var poster = e.jPlayer.status.media.poster;
+  var bio = e.jPlayer.status.media.bio;
+  var news = e.jPlayer.status.media.news;
 
-  console.log(title);
-  console.log(artist);
-  console.log(poster);
+
+  console.log(bio);
+
   document.getElementById("currentArtist").innerHTML = artist;
   document.getElementById("currentTrack").innerHTML = title;
   document.getElementById("currentPoster").src = poster;
+  document.getElementById("playingArtistBiography").innerHTML = bio.substring(0,500) + '...';
+  //$("playingArtistBiography").text(bio.substring(0,150) + '...');
+
+
+  $('#playingArtistNews').html(""); // Clears previous articles before adding new
+
+  for (var i = 0; i < news.length && i < 10; i++) {
+    $('#playingArtistNews').append("<li><a href="+"\""+news[i].url+"\""+"onClick=\"return popup(this, 'popup')\">"+news[i].name+"</a></li>");
+  };
 }

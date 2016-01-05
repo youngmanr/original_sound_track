@@ -3,9 +3,31 @@ $(document).ready(function() {
   var positionData = {};
   var playing = false;
 
-  // $('#load-track').click(function() {
-  //   getLocation();
-  // });
+  $("#familiarityLow").click(function() {
+    updateFamiliarity("0.1");
+  });
+
+  $("#familiarityMedium").click(function() {
+    updateFamiliarity("0.5");
+  });
+
+  $("#familiarityHigh").click(function() {
+    updateFamiliarity("0.9");
+  });
+
+  $('#familiarityMedium').prop('checked', true);
+
+  function updateFamiliarity(f) {
+    myPlaylist.remove();
+    getArtists(positionData, f).then(function(artistsObjectPromise) {
+      console.log('Updated Familiarity Artists: (see object below)');
+      console.log(artistsObjectPromise);
+      getArtistTopTracks(artistsObjectPromise, positionData).then(function(topTracksPromise) {
+        console.log("Update MyPlaylist (see below)");
+        console.log(myPlaylist);
+      });
+    });
+  };
 
   function getLocation() { // Nb. Error handling has been removed
     return new Promise(function(resolve, reject) {
@@ -70,23 +92,25 @@ $(document).ready(function() {
 
 
   // MAKES ECHONEST API CALL BASED ON cityName AND country
-  function getArtists(positionData, familiarity, genre) {
+  function getArtists(positionData, familiarity) {
     return new Promise(function(resolve, reject) {
-      var familiarityTerm = familiarity || '0.1';
-      var genreTerm = genre || '*';
+      var familiarityTerm = familiarity || '0.5';
+  //    var genreTerm = genre || '*';
       var cityName = positionData.cityName;
       var country = positionData.country;
       var echonestUrl = 'https://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETBX8' +
                     '&format=json' +
                     '&artist_location=' + cityName + '+' + country +
-                    '&min_familiarity=' + familiarityTerm +
-                    '&description=' + genreTerm +
+                    '&max_familiarity=' + familiarityTerm +
+                    //'&description=' + genreTerm +
                     '&sort=familiarity-desc&results=35' +
                     '&bucket=id:spotify' +
-                    '&bucket=genre';
+                    '&bucket=biographies' +
+                    '&bucket=artist_location' +
+                    '&bucket=news';
 
       console.log('echonestURL ', echonestUrl)
-https://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETB…=classical&sort=familiarity-desc&results=35&bucket=id:spotify&bucket=genre
+  // https://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETB…=classical&sort=familiarity-desc&results=35&bucket=id:spotify&bucket=genre
       $.get(echonestUrl, function(data){
         resolve(data);
       });
@@ -103,25 +127,40 @@ https://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETB…=c
         var spotifyId = spotifyArtistId(artist);
         var countryCode = positionData.countryCode;
         var topTracksUrl = "https://api.spotify.com/v1/artists/" + spotifyId + "/top-tracks?country=" + countryCode;
-        
-        
+
+
         $.get(topTracksUrl, function(response){
           response.tracks.forEach(function(song) {
-            console.log("song (see below)");
-            console.log(song);
             myPlaylist.add({
               title: song.name,
               artist: song.artists[0].name,
               mp3: song.preview_url,
-              poster: song.album.images[0].url
+              poster: song.album.images[0].url,
+              // bio: (artist.biographies.length !== 0 ) ? artist.biographies[0].text : "No biographies available",
+              bio: findBestBio(artist.biographies),
+              news: artist.news
             });
-          playIfNotPlaying();
+          // playIfNotPlaying();
           });
         });
       });
       resolve('No data to return');
     });
   }
+
+  function findBestBio(biographies) {
+    var result;
+    biographies.forEach(function(i) {
+      if(i.truncated !== true) {
+        result = i.text;
+      };
+    });
+    if(result) {
+      return result
+    } else {
+      return "No biographies available"
+    };
+  };
 
   // PLAY THE PLAYLIST IF IT'S NOT ALREADY PLAYING
   function playIfNotPlaying(){
@@ -185,6 +224,8 @@ https://developer.echonest.com/api/v4/artist/search?api_key=BG6IJZJJYOKNETB…=c
       console.log(artistsObjectPromise);
       getArtistTopTracks(artistsObjectPromise, positionData).then(function(topTracksPromise) {
         console.log('THE FOURTH PROMISE: ' + topTracksPromise);
+        console.log("MyPlaylist (see below)");
+        console.log(myPlaylist);
       });
     });
     getSongKickMetroID(positionData).then(function(metroAreaIDPromise) {
