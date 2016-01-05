@@ -2,6 +2,7 @@ $(document).ready(function() {
 
   var positionData = {};
   var playing = false;
+  var modifiedCountries = ["United Kingdom"]
 
   $("#familiarityLow").click(function() {
     updateFamiliarity("0.1");
@@ -59,7 +60,6 @@ $(document).ready(function() {
 
   function showPosition() {
     return new Promise(function(resolve, reject) {
-      // getLocation().then(function(position) {
 
         var latitude = positionData.latitude;
         var longitude = positionData.longitude;
@@ -68,7 +68,8 @@ $(document).ready(function() {
 
         $.get(geolocUrl, function(response) {
           var results = response.results
-          if (results[results.length-1].address_components[0].long_name === 'United Kingdom') {
+          var country = results[results.length-1].address_components[0].long_name;
+          if (country === "United Kingdom") {
             for (var result = 0; result < results.length; result++) {
               for (var component = 0; component < results[result].address_components.length; component++) {
                 if(results[result].address_components[component].types.includes('postal_town')) {
@@ -91,11 +92,6 @@ $(document).ready(function() {
           };
           countryCode = results[results.length-1].address_components[0].short_name;
 
-          // console.log("cityName = " + cityName, "country = " + country, "countryCode = " + countryCode);
-          // console.log(response);
-
-          //resolve([cityName, country, countryCode]);
-
           positionData.cityName = cityName;
           positionData.country = country;
           positionData.countryCode = countryCode;
@@ -103,7 +99,6 @@ $(document).ready(function() {
           positionData.longitude = longitude;
           resolve(positionData)
         });
-      // });
     });
   };
 
@@ -150,7 +145,6 @@ $(document).ready(function() {
           if(response.tracks.length > 0) {
             var randomNum = Math.floor(Math.random() * response.tracks.length);
             var randomTrack = response.tracks[randomNum];
-            console.log(randomTrack);
               myPlaylist.add({
                 title: randomTrack.name,
                 artist: randomTrack.artists[0].name,
@@ -178,7 +172,7 @@ $(document).ready(function() {
     if(result) {
       return result
     } else {
-      return "No biography available"
+      return {text: "No biography available"}
     };
   };
 
