@@ -216,6 +216,7 @@ $(document).ready(function() {
   };
 
   function getUpcomingEvents(metroAreaID) {
+    $("#localEventsList").html("");
     var eventUrl = 'https://api.songkick.com/api/3.0/metro_areas/' +
     metroAreaID +
     '/calendar.json?apikey=qMMmyACVKOgL3Kgb' + '&jsoncallback=?';
@@ -224,8 +225,6 @@ $(document).ready(function() {
       $.each(data.resultsPage.results.event, function (i, event) {
         var uri = event.uri;
         var displayName = event.displayName;
-        // $("#event").append("<li><a href="+"\""+uri+"\""+
-        //   "onClick=\"return popup(this, 'popup')\">"+displayName+"</a></li>");
         $("#localEventsList").append("<li><a href="+"\""+uri+"\""+
           "onClick=\"return popup(this, 'popup')\">"+displayName+"</a></li>");
       });
@@ -237,8 +236,7 @@ $(document).ready(function() {
   });
 
   // CALLING THE FUNCTIONS IN A CHAIN
-
-
+  myPlaylist.remove();
   getLocation().then(function(getLocPromise) {
     console.log('THE FIRST PROMISE: (see object below)');
     console.log(getLocPromise);
@@ -262,10 +260,8 @@ $(document).ready(function() {
     });
   });
 
-
   function searchByLocation() {
     myPlaylist.remove();
-
     searchLocation().then(function(getLocPromise) {
       console.log('THE FIRST PROMISE: (see object below)');
       console.log(getLocPromise);
