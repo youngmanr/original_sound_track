@@ -92,12 +92,28 @@
   </div>
   </div>
 </div>
+
+<!-- Artist Biography Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Biography</h4>
+      </div>
+        <div class="modal-body" id='bio_full'></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <form id='searchBar' class="form-inline">
   <input type="text" class='form-control' placeholder="Search places..." id='searchVal'></input>
   <button type="button" id="submitSearch">SEARCH</button>
 </form>
+
 <!-- Local Events -->
 <div class="container-fluid">
 <div id="localEvents">
@@ -108,7 +124,7 @@
   </div>
   <div class="row">
   <div class="col-md-6">
-  <div id="localEventsList">Events</div>
+  <div id="localEventsList" class="list-group">Events</div>
   <ul>
   </ul>
   </div>
@@ -126,6 +142,7 @@
 <script src="app/js/app.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.2/jplayer/jquery.jplayer.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.2/add-on/jplayer.playlist.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <script src="script.js"></script>
 <script src="popup.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
