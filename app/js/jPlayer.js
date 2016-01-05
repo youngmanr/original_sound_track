@@ -70,6 +70,6 @@ function updateDisplayedTrackTitle(e) {
   $('#playingArtistNews').html(""); // Clears previous articles before adding new
 
   for (var i = 0; i < news.length && i < 10; i++) {
-    $('#playingArtistNews').append("<li><a href="+"\""+news[i].url+"\""+"onClick=\"return popup(this, 'popup')\">"+news[i].name+"</a></li>");
+    $('#playingArtistNews').append("<a class=\"list-group-item\" href="+"\""+news[i].url+"\""+"onClick=\"return popup(this, 'popup')\">"+news[i].name+"</a></li>");
   };
 }

@@ -25,6 +25,7 @@ $(document).ready(function() {
       getArtistTopTracks(artistsObjectPromise, positionData).then(function(topTracksPromise) {
         console.log("Update MyPlaylist (see below)");
         console.log(myPlaylist);
+        myPlaylist.play();
       });
     });
   };
@@ -205,14 +206,13 @@ $(document).ready(function() {
       $.each(data.resultsPage.results.event, function (i, event) {
         var uri = event.uri;
         var displayName = event.displayName;
-        $("#event").append("<li><a href="+"\""+uri+"\""+
-          "onClick=\"return popup(this, 'popup')\">"+displayName+"</a></li>");
-        $("#localEventsList").append("<li><a href="+"\""+uri+"\""+
-          "onClick=\"return popup(this, 'popup')\">"+displayName+"</a></li>");
+        $("#localEventsList").append("<a class=\"list-group-item\" href="+"\""+uri+"\""+
+          "onClick=\"return popup(this, 'popup')\">"+displayName+"</a>");
         return i<9;
       });
     });
   };
+
 
   //MODAL SCALING
   $('#myModal').on('show.bs.modal', function () {
