@@ -16,12 +16,12 @@ div {
 
 #currentLocation {
     outline: 1px solid black;
-    padding: 15px;
+    padding: 1%;
 }
 
 #controls {
     outline: 1px solid black;
-    padding: 15px;
+    padding: 1%;
 }
 
 #audioControls {
@@ -34,7 +34,7 @@ div {
 
 #playingArtist {
     outline: 1px solid black;
-    padding: 15px;
+    padding: 1%;
 }
 
 /*#playingArtistPoster{
@@ -58,21 +58,21 @@ div {
 
 #localEvents {
     outline: 1px solid black;
-    padding: 15px;
+    padding: 1%;
 }
 
 #localEventsTitle {
-    padding: 15px;
+    padding: 1%;
 }
 
 #localEventsList {
     outline: 1px solid black;
-    padding: 15px;
+    padding: 1%;
 }
 
 #localEventsMap {
     outline: 1px solid black;
-    padding: 15px;
+    padding: 1%;
 }
 
 #jp_container_1 {
