@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+  searchLocation();
+
   var positionData = {};
   var playing = false;
 
@@ -32,20 +34,35 @@ $(document).ready(function() {
   function getLocation() { // Nb. Error handling has been removed
     return new Promise(function(resolve, reject) {
       navigator.geolocation.getCurrentPosition(function(position) {
+        positionData.latitude = position.coords.latitude;
+        positionData.longitude = position.coords.longitude;
         resolve(position);
       });
     });
   };
 
+  function searchLocation() {
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode( { 'address': 'Manchester, United Kingdom'}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+          console.log('searchLocation Result---------' ,results);
+          positionData.latitude = results.geometry.location.lat();
+          positionData.longitude = results.geometry.location.lng();
+        } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      };
+    });
+  };
+
   function showPosition() {
     return new Promise(function(resolve, reject) {
-      getLocation().then(function(position) {
+      // getLocation().then(function(position) {
 
         console.log('THE FIRST PROMISE: (see object below)');
         console.log(position);
 
-        var latitude = position.coords.latitude;
-        var longitude = position.coords.longitude;
+        var latitude = positionData.latitude;
+        var longitude = positionData.longitude;
         var geolocUrl = 'https://maps.googleapis.com/maps/api/geocode/json?&language=en&latlng=' + latitude + "," + longitude
                          '&key=AIzaSyAGWnWE0GeEPpCYmiy2mXZ9RnDGf_n3JQA';
 
@@ -86,7 +103,7 @@ $(document).ready(function() {
           positionData.longitude = longitude;
           resolve(positionData)
         });
-      });
+      // });
     });
   };
 
@@ -213,6 +230,9 @@ $(document).ready(function() {
   };
 
   // CALLING THE FUNCTIONS IN A CHAIN
+  getLocation().then(function(getLocPromise) {
+
+  });
   showPosition().then(function(positionPromise) {
     positionData = positionPromise;
     console.log('THE SECOND PROMISE: (see object below)');
