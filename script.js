@@ -152,13 +152,13 @@ $(document).ready(function() {
     var result;
     biographies.forEach(function(i) {
       if(i.truncated !== true) {
-        result = i.text;
+        result = i;
       };
     });
     if(result) {
       return result
     } else {
-      return "No biographies available"
+      return {text: "No biographies available"}
     };
   };
 
@@ -209,9 +209,15 @@ $(document).ready(function() {
           "onClick=\"return popup(this, 'popup')\">"+displayName+"</a></li>");
         $("#localEventsList").append("<li><a href="+"\""+uri+"\""+
           "onClick=\"return popup(this, 'popup')\">"+displayName+"</a></li>");
+        return i<9;
       });
     });
   };
+
+  //MODAL SCALING
+  $('#myModal').on('show.bs.modal', function () {
+    $('.modal-content').css('height',$( window ).height()*0.8);
+  });
 
   // CALLING THE FUNCTIONS IN A CHAIN
   showPosition().then(function(positionPromise) {

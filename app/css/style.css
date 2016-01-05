@@ -10,6 +10,15 @@ div {
     margin-bottom: 25px;
 }
 
+.modal-dialog{
+    overflow-y: initial !important
+    width: 400px;
+}
+.modal-body{
+    height: 70%;
+    overflow-y: auto;
+}
+
 #currentLocation {
     outline: 1px solid black;
 }

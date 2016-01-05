@@ -57,7 +57,13 @@ function updateDisplayedTrackTitle(e) {
   document.getElementById("currentArtist").innerHTML = artist;
   document.getElementById("currentTrack").innerHTML = title;
   document.getElementById("currentPoster").src = poster;
-  document.getElementById("playingArtistBiography").innerHTML = bio.substring(0,500) + '...';
+  document.getElementById("bio_full").innerHTML = bio.text;
+  document.getElementById("playingArtistBiography").innerHTML = bio.text.substring(0,500) +
+                          '<a data-toggle="modal" data-target="#myModal">... see more</a>';
+
+
+
+
   //$("playingArtistBiography").text(bio.substring(0,150) + '...');
 
 
