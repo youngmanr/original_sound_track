@@ -235,11 +235,11 @@ $(document).ready(function() {
 
   $("#submitSearch").click(function() {
     searchByLocation();
+  });
 
   //MODAL SCALING
   $('#myModal').on('show.bs.modal', function () {
     $('.modal-content').css('height',$( window ).height()*0.8);
-
   });
 
   // CALLING THE FUNCTIONS IN A CHAIN
@@ -292,5 +292,5 @@ $(document).ready(function() {
       });
     });
   };
-
+  
 });
