@@ -259,6 +259,7 @@ $(document).ready(function() {
           console.log('THE FOURTH PROMISE: ' + topTracksPromise);
           console.log("MyPlaylist (see below)");
           console.log(myPlaylist);
+          $(".spinner").fadeOut("slow");
         });
       });
     });
@@ -292,5 +293,5 @@ $(document).ready(function() {
       });
     });
   };
-  
+
 });

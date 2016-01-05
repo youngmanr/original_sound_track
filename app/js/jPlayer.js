@@ -51,9 +51,10 @@ function updateDisplayedTrackTitle(e) {
   var bio = e.jPlayer.status.media.bio;
   var news = e.jPlayer.status.media.news;
 
+  displayCurrentArtist(document, artist, title, poster, bio, news);
+}
 
-  console.log(bio);
-
+function displayCurrentArtist(document, artist, title, poster, bio, news) {
   document.getElementById("currentArtist").innerHTML = artist;
   document.getElementById("currentTrack").innerHTML = title;
   document.getElementById("currentPoster").src = poster;
@@ -61,13 +62,8 @@ function updateDisplayedTrackTitle(e) {
   document.getElementById("playingArtistBiography").innerHTML = bio.text.substring(0,500) +
                           '<a data-toggle="modal" data-target="#myModal">... see more</a>';
 
-
-
-
-  //$("playingArtistBiography").text(bio.substring(0,150) + '...');
-
-
-  $('#playingArtistNews').html(""); // Clears previous articles before adding new
+  // Clears previous articles before adding new
+  $('#playingArtistNews').html("");
 
   for (var i = 0; i < news.length && i < 10; i++) {
     $('#playingArtistNews').append("<a class=\"list-group-item\" href="+"\""+news[i].url+"\""+"onClick=\"return popup(this, 'popup')\">"+news[i].name+"</a></li>");
