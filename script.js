@@ -131,16 +131,15 @@ $(document).ready(function() {
 
 
         $.get(topTracksUrl, function(response){
-          response.tracks.forEach(function(song) {
+          var randomTrack = response.tracks[Math.floor(Math.random() * response.tracks.length)];
             myPlaylist.add({
-              title: song.name,
-              artist: song.artists[0].name,
-              mp3: song.preview_url,
-              poster: song.album.images[0].url,
+              title: randomTrack.name,
+              artist: randomTrack.artists[0].name,
+              mp3: randomTrack.preview_url,
+              poster: randomTrack.album.images[0].url,
               // bio: (artist.biographies.length !== 0 ) ? artist.biographies[0].text : "No biographies available",
               bio: findBestBio(artist.biographies),
               news: artist.news
-            });
           // playIfNotPlaying();
           });
         });
