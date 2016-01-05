@@ -1,3 +1,7 @@
 /Mockups/**
 /Screenshots/**
 /IRLOST/**
+/node_modules
+/bower_components
+/spotify-api-test
+
