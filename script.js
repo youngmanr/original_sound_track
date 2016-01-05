@@ -39,18 +39,21 @@ $(document).ready(function() {
     });
   };
 
-  // function searchLocation() {
-  //   var geocoder = new google.maps.Geocoder();
-  //   geocoder.geocode( { 'address': 'Manchester, United Kingdom'}, function(results, status) {
-  //     if (status == google.maps.GeocoderStatus.OK) {
-  //         console.log('searchLocation Result---------' ,results);
-  //         positionData.latitude = results.geometry.location.lat();
-  //         positionData.longitude = results.geometry.location.lng();
-  //       } else {
-  //       alert("Geocode was not successful for the following reason: " + status);
-  //     };
-  //   });
-  // };
+  function searchLocation() {
+    return new Promise(function(resolve, reject) {
+      var geocoder = new google.maps.Geocoder();
+      geocoder.geocode( { 'address': 'Manchester, United Kingdom'}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            console.log('searchLocation Result---------' ,results);
+            positionData.latitude = results[0].geometry.location.lat();
+            positionData.longitude = results[0].geometry.location.lng();
+            resolve(positionData);
+          } else {
+          alert("Geocode was not successful for the following reason: " + status);
+        };
+      });
+    });
+  };
 
   function showPosition() {
     return new Promise(function(resolve, reject) {
@@ -225,7 +228,7 @@ $(document).ready(function() {
   };
 
   // CALLING THE FUNCTIONS IN A CHAIN
-  getLocation().then(function(getLocPromise) {
+  searchLocation().then(function(getLocPromise) {
     console.log('THE FIRST PROMISE: (see object below)');
     console.log(getLocPromise);
     showPosition().then(function(positionPromise) {
