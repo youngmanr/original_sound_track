@@ -61,6 +61,11 @@ body {
     color: white;
 }
 
+#location {
+    margin-top: 40px;
+    text-align: center;
+}
+
 .navbar-inverse {
     background-color: #607B8B;
     border-color: #E7E7E7;
