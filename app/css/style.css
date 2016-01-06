@@ -72,10 +72,6 @@ body {
     text-align: center;
 }
 
-.row {
-    margin: 0 0;
-
-}
 .btn-group {
     margin-top: 10px;
     margin-bottom: 5px;
@@ -86,6 +82,11 @@ body {
     font-family: Lobster, Monospace;
     color: white;
 
+}
+
+.nopadding {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
 }
 
 .spinner {
@@ -131,7 +132,6 @@ body {
 }
 
 #playingArtist {
-    outline: 1px solid black;
     padding: 1%;
 }
 
