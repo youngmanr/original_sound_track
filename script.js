@@ -276,6 +276,8 @@ $(document).ready(function() {
 
   function searchByLocation() {
     myPlaylist.remove();
+    $(".spinner").fadeIn("slow");
+    artistInfoDisplayed = false;
     searchLocation().then(function(getLocPromise) {
       console.log('THE FIRST PROMISE: (see object below)');
       console.log(getLocPromise);
@@ -291,6 +293,7 @@ $(document).ready(function() {
             console.log('THE FOURTH PROMISE: ' + topTracksPromise);
             console.log("MyPlaylist (see below)");
             console.log(myPlaylist);
+             $(".spinner").fadeOut("slow");
           });
         });
       });
