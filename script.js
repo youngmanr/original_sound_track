@@ -232,7 +232,7 @@ $(document).ready(function() {
           var displayName = event.displayName;
           $("#localEventsList").append("<a class=\"list-group-item\" href="+"\""+uri+"\""+
             "onClick=\"return popup(this, 'popup')\">"+displayName+"</a>");
-          return i<4;
+          return i<7;
         });
       };
     });
