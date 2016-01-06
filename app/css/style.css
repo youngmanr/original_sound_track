@@ -66,6 +66,10 @@ body {
     color: white;
 }
 
+#searchVal {
+  width: 100%;
+}
+
 #location {
     text-align: center;
     padding-top: 55px;
