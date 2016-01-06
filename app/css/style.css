@@ -72,6 +72,32 @@ body {
     background: -webkit-linear-gradient(left,  #0f182b 0%,#2a3b53 33%,#2a3b53 66%,#0f182b 100%);
 }
 
+.container-fluid.full-width {
+    padding-left: 0;
+    padding-right: 0;
+    overflow-x: hidden;
+}
+
+.row.row-no-gutter {
+    margin: 0
+}
+
+.row.row-no-gutter [class*="col-"] {
+    padding: 0;
+    margin-top: 1px;
+    margin-bottom: 3%;
+}
+
+.has-inner .row.row-no-gutter {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.row.row-no-gutter .inner {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 .btn-group {
     margin-top: 10px;
     margin-bottom: 5px;
