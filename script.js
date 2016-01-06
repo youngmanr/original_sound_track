@@ -243,7 +243,7 @@ $(document).ready(function() {
   });
 
   //MODAL SCALING
-  $('#myModal').on('show.bs.modal', function () {
+  $('.modal').on('show.bs.modal', function () {
     $('.modal-content').css('height',$( window ).height()*0.8);
   });
 
