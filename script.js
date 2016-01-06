@@ -151,13 +151,13 @@ $(document).ready(function() {
             var randomNum = Math.floor(Math.random() * response.tracks.length);
             var randomTrack = response.tracks[randomNum];
             var title = randomTrack.name;
-            var artist = randomTrack.artists[0].name;
+            var artistName = randomTrack.artists[0].name;
             var mp3 =randomTrack.preview_url;
             var poster = randomTrack.album.images[0].url;
             var bio = findBestBio(artist.biographies);
             var news = artist.news;
 
-            myPlaylist.add({ title, artist,mp3, poster, bio, news });
+            myPlaylist.add({ title: title, artist: artistName, mp3: mp3, poster: poster, bio: bio, news: news });
             // playIfNotPlaying();
             displayArtistInfoIfNotAlreadyDisplayed(artist, title, poster, bio, news);
           };
