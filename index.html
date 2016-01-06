@@ -38,11 +38,12 @@
         </div>
   </nav>
 
-<div class="container-fluid">
+<div id="location" class="container-fluid">
   <h1 id="currentLocation"></h1>
 </div>
 
 <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+
 
 <!-- Playing Artist -->
 <div class="container-fluid">
@@ -75,6 +76,7 @@
 </div>
 </div>
 
+
 <!-- Artist Biography Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog modal-sm modal-lg">
@@ -94,23 +96,17 @@
 
 <!-- Local Events -->
 <div class="container-fluid">
-<div id="localEvents">
-  <div class="row">
-  <div class="col-xs-12">
-    <div id="localEventsTitle">Local Events</div>
+  <div id="localEvents">
+      <div class="row">
+        <div class="col-xs-12">
+          <div id="localEventsTitle">Local Events</div>
+          <div class="row">
+            <div class="col-md-6">
+              <div id="localEventsList" class="list-group">Events</div>
+            </div>
+          </div>
+      </div>
   </div>
-  </div>
-  <div class="row">
-  <div class="col-md-6">
-  <div id="localEventsList" class="list-group">Events</div>
-  <ul>
-  </ul>
-  </div>
-  <div class="col-md-6">
-  <div id="localEventsMap">Map</div>
-  </div>
-  </div>
-</div>
 </div>
 
 <nav class="navbar navbar-inverse navbar-fixed-bottom">

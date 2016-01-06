@@ -12,7 +12,6 @@ body {
     background: url('images/page-loader.gif') 50% 50% no-repeat rgb(249,249,249);
 }
 
-
 .navbar-default #AppName {
     font-family: Lobster, Monospace;
     font-size: 24px;
@@ -60,6 +59,11 @@ body {
     background-color: black;
     border-color: #E7E7E7;
     color: white;
+}
+
+#location {
+    text-align: center;
+    padding-top: 55px;
 }
 
 .navbar-inverse {

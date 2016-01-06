@@ -20,8 +20,8 @@ var myPlaylist = new jPlayerPlaylist({
 
   play: function(e) {
     updateDisplayedTrackTitle(e);
+
   },
-  // ready: console.log('playlist loaded'),
 
   autoplay: true,
   audioFullScreen: true, // Allows the audio poster to go full screen via keyboard
@@ -34,7 +34,7 @@ $("#play").click(function() {
 });
 
 $("#pause").click(function() {
-  console.log("skip button");
+  console.log("pause button");
   myPlaylist.pause();
 });
 
@@ -64,6 +64,10 @@ function displayCurrentArtist(document, artist, title, poster, bio, news) {
 
   // Clears previous articles before adding new
   $('#playingArtistNews').html("");
+
+  if(news.length === 0) {
+    $('#playingArtistNews').append("<a class=\"list-group-item\">No news from this band...</a></li>");
+  };
 
   for (var i = 0; i < news.length && i < 10; i++) {
     $('#playingArtistNews').append("<a class=\"list-group-item\" href="+"\""+news[i].url+"\""+"onClick=\"return popup(this, 'popup')\">"+news[i].name+"</a></li>");

@@ -2,6 +2,7 @@ $(document).ready(function() {
 
   var positionData = {};
   var playing = false;
+  var artistInfoDisplayed = false;
   var modifiedCountries = ["United Kingdom"]
 
   $("#familiarityLow").click(function() {
@@ -20,6 +21,7 @@ $(document).ready(function() {
 
   function updateFamiliarity(f) {
     myPlaylist.remove();
+    artistInfoDisplayed = false;
     getArtists(positionData, f).then(function(artistsObjectPromise) {
       console.log('Updated Familiarity Artists: (see object below)');
       console.log(artistsObjectPromise);
@@ -140,21 +142,20 @@ $(document).ready(function() {
         var countryCode = positionData.countryCode;
         var topTracksUrl = "https://api.spotify.com/v1/artists/" + spotifyId + "/top-tracks?country=" + countryCode;
 
-
         $.get(topTracksUrl, function(response){
           if(response.tracks.length > 0) {
             var randomNum = Math.floor(Math.random() * response.tracks.length);
             var randomTrack = response.tracks[randomNum];
-              myPlaylist.add({
-                title: randomTrack.name,
-                artist: randomTrack.artists[0].name,
-                mp3: randomTrack.preview_url,
-                poster: randomTrack.album.images[0].url,
-                // bio: (artist.biographies.length !== 0 ) ? artist.biographies[0].text : "No biographies available",
-                bio: findBestBio(artist.biographies),
-                news: artist.news
+            var title = randomTrack.name;
+            var artistName = randomTrack.artists[0].name;
+            var mp3 =randomTrack.preview_url;
+            var poster = randomTrack.album.images[0].url;
+            var bio = findBestBio(artist.biographies);
+            var news = artist.news;
+
+            myPlaylist.add({ title: title, artist: artistName, mp3: mp3, poster: poster, bio: bio, news: news });
             // playIfNotPlaying();
-            });
+            displayArtistInfoIfNotAlreadyDisplayed(artistName, title, poster, bio, news);
           };
         });
       });
@@ -181,6 +182,13 @@ $(document).ready(function() {
     if (!playing) {
       playing = true;
       myPlaylist.play(0);
+    };
+  }
+
+  function displayArtistInfoIfNotAlreadyDisplayed(artist, title, poster, bio, news){
+    if (!artistInfoDisplayed) {
+      artistInfoDisplayed = true;
+      displayCurrentArtist(document, artist, title, poster, bio, news);
     };
   }
 
@@ -216,14 +224,17 @@ $(document).ready(function() {
     metroAreaID +
     '/calendar.json?apikey=qMMmyACVKOgL3Kgb' + '&jsoncallback=?';
     $.getJSON(eventUrl, function(data){
-      console.log(data.resultsPage);
-      $.each(data.resultsPage.results.event, function (i, event) {
-        var uri = event.uri;
-        var displayName = event.displayName;
-        $("#localEventsList").append("<a class=\"list-group-item\" href="+"\""+uri+"\""+
-          "onClick=\"return popup(this, 'popup')\">"+displayName+"</a>");
-        return i<9;
-      });
+      if($.isEmptyObject(data.resultsPage.results)) {
+        $("#localEventsList").append("<a class=\"list-group-item\" href=\"#\">No events near you...</a>");
+      } else {
+        $.each(data.resultsPage.results.event, function (i, event) {
+          var uri = event.uri;
+          var displayName = event.displayName;
+          $("#localEventsList").append("<a class=\"list-group-item\" href="+"\""+uri+"\""+
+            "onClick=\"return popup(this, 'popup')\">"+displayName+"</a>");
+          return i<9;
+        });
+      };
     });
   };
 
@@ -254,16 +265,20 @@ $(document).ready(function() {
           console.log("MyPlaylist (see below)");
           console.log(myPlaylist);
           $(".spinner").fadeOut("slow");
+          //updateCurrentArtistFromPlaylist();
         });
       });
     });
     getSongKickMetroID(positionData).then(function(metroAreaIDPromise) {
       getUpcomingEvents(metroAreaIDPromise);
     });
+
   });
 
   function searchByLocation() {
     myPlaylist.remove();
+    $(".spinner").fadeIn("slow");
+    artistInfoDisplayed = false;
     searchLocation().then(function(getLocPromise) {
       console.log('THE FIRST PROMISE: (see object below)');
       console.log(getLocPromise);
@@ -279,6 +294,7 @@ $(document).ready(function() {
             console.log('THE FOURTH PROMISE: ' + topTracksPromise);
             console.log("MyPlaylist (see below)");
             console.log(myPlaylist);
+             $(".spinner").fadeOut("slow");
           });
         });
       });
@@ -287,5 +303,18 @@ $(document).ready(function() {
       });
     });
   };
+
+  function updateCurrentArtistFromPlaylist() {
+    console.log("myPlaylist - see below");
+    console.log(myPlaylist.playlist[0]);
+
+    var artist = myPlaylist.playlist[0].artist;
+    var title = myPlaylist.playlist[0].title;
+    var poster = myPlaylist.playlist[0].poster;
+    var bio = myPlaylist.playlist[0].bio;
+    var news = myPlaylist.playlist[0].news;
+
+    displayCurrentArtist(document, artist, title, poster, bio, news);
+  }
 
 });
