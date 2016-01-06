@@ -16,21 +16,26 @@
 <div class="spinner"></div>
 <!-- <div class= "container"> -->
   <nav class="navbar navbar-default navbar-fixed-top">
-    <ul>
-      <li><a id="AppName" href="#">App name</a></li>
-
-      <li><div><a class="navBarText" href="#">About</a></div></li>
-      <li>
-        <div class="dropdown">
-          <a href="#" data-toggle="dropdown" class="dropdown-toggle">Familiarity <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="#" id="familiarityLow" name="optFamiliarity">Low</a></li>
-              <li><a href="#" id="familiarityMedium" name="optFamiliarity">Medium</a></li>
-              <li><a href="#" id="familiarityHigh" name="optFamiliarity">High</a></li>
-            </ul>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-3 col-sm-4 col-lg-4">
+          <a id="AppName" class="navbar-brand" href="#">App name</a>
         </div>
-      </li>
-    </ul>
+        <div class="col-xs-6 col-sm-4 col-lg-4">
+          <form id='searchBar' class="form-inline">
+            <input type="text" class='form-control' placeholder="Search places..." id='searchVal'></input>
+          </form>
+        </div>
+        <div class="col-xs-3 col-sm-4 col-lg-4">
+          <div id="dropdown" class="dropdown pull-right">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Popularity<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#" id="familiarityLow" name="optFamiliarity">Low</a></li>
+                <li><a href="#" id="familiarityMedium" name="optFamiliarity">Medium</a></li>
+                <li><a href="#" id="familiarityHigh" name="optFamiliarity">High</a></li>
+              </ul>
+          </div>
+        </div>
   </nav>
 
 <div class="container-fluid">
@@ -86,10 +91,6 @@
   </div>
 </div>
 
-<form id='searchBar' class="form-inline">
-  <input type="text" class='form-control' placeholder="Search places..." id='searchVal'></input>
-  <button type="button" id="submitSearch">SEARCH</button>
-</form>
 
 <!-- Local Events -->
 <div class="container-fluid">
@@ -116,11 +117,11 @@
   <div class="container-fluid">
     <div class="row">
       <div class="btn-group">
-        <button type="button" id="play" class="btn btn-default btn-lg">
+        <button type="button" id="play" class="btn btn-default btn-md">
       <span class="glyphicon glyphicon-chevron-right"></span> Play</button>
-        <button type="button" id="pause" class="btn btn-default btn-lg">
+        <button type="button" id="pause" class="btn btn-default btn-md">
       <span class="glyphicon glyphicon-pause"></span> Pause</button>
-        <button type="button" id="skip" class="btn btn-default btn-lg">
+        <button type="button" id="skip" class="btn btn-default btn-md">
       <span class="glyphicon glyphicon-share-alt"></span> Skip</button>
       </div>
   </div>

@@ -3,11 +3,6 @@ body {
 	background-color: #F0F8FF;
 }
 
-div {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
 .spinner {
     position: fixed;
     left: 0px;
@@ -18,37 +13,47 @@ div {
     background: url('images/page-loader.gif') 50% 50% no-repeat rgb(249,249,249);
 }
 
-.navbar-default ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    background-color: #333;
-}
-
-.navbar-default ul li {
-    float: left;
-    position: relative;
-}
 
 .navbar-default #AppName {
-  font-family: Lobster, Monospace;
-  font-size: 24px;
-  margin-left: 15px;
+    font-family: Lobster, Monospace;
+    font-size: 24px;
+    color: white;
+    position:relative;
 }
 
-.navbar-default li a {
+.navbar-default #dropdown {
     font-size: 16px;
     display: inline-block;
     color: white;
-    text-align: center;
+    text-align: right;
     padding: 14px 14px;
     text-decoration: none;
     position:relative;
 }
 
+.navbar-default .dropdown-toggle { 
+    color: white;
+}
+
+.navbar-default .dropdown-menu { 
+    background-color: #333;
+    font-size: 16px;
+    color: white;
+}
+
+.navbar-default li a {
+    color: white;
+}
+
 .navbar-default li a:hover {
     background-color: #000000;
     color: white;
+}
+
+.navbar-default #searchBar {
+    position:relative;
+    text-align: center;
+    padding: 14px 14px;
 }
 
 
@@ -61,22 +66,23 @@ div {
 .navbar-inverse {
     background-color: #607B8B;
     border-color: #E7E7E7;
+    text-align: center;
 }
 
 .row {
     margin: 0 0;
-    text-align: center;
 
 }
 .btn-group {
+    margin-top: 15px;
     margin-bottom: 5px;
-
 }
 
 .now-playing {
-    font-size: 18px;
+    font-size: 14px;
     font-family: Lobster, Monospace;
     color: white;
+
 }
 
 .spinner {
