@@ -67,9 +67,9 @@ body {
 }
 
 .navbar-inverse {
-    background-color: #607B8B;
     border-color: #E7E7E7;
     text-align: center;
+    background: -webkit-linear-gradient(left,  #0f182b 0%,#2a3b53 33%,#2a3b53 66%,#0f182b 100%);
 }
 
 .btn-group {
