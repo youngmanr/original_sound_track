@@ -3,6 +3,7 @@ $(document).ready(function() {
   var positionData = {};
   var playing = false;
   var artistInfoDisplayed = false;
+  var modifiedCountries = ["United Kingdom"]
 
   $("#familiarityLow").click(function() {
     updateFamiliarity("0.1");
@@ -60,7 +61,6 @@ $(document).ready(function() {
 
   function showPosition() {
     return new Promise(function(resolve, reject) {
-      // getLocation().then(function(position) {
 
         var latitude = positionData.latitude;
         var longitude = positionData.longitude;
@@ -69,7 +69,8 @@ $(document).ready(function() {
 
         $.get(geolocUrl, function(response) {
           var results = response.results
-          if (results[results.length-1].address_components[0].long_name === 'United Kingdom') {
+          var country = results[results.length-1].address_components[0].long_name;
+          if (country === "United Kingdom") {
             for (var result = 0; result < results.length; result++) {
               for (var component = 0; component < results[result].address_components.length; component++) {
                 if(results[result].address_components[component].types.includes('postal_town')) {
@@ -92,11 +93,6 @@ $(document).ready(function() {
           };
           countryCode = results[results.length-1].address_components[0].short_name;
 
-          // console.log("cityName = " + cityName, "country = " + country, "countryCode = " + countryCode);
-          // console.log(response);
-
-          //resolve([cityName, country, countryCode]);
-
           positionData.cityName = cityName;
           positionData.country = country;
           positionData.countryCode = countryCode;
@@ -104,7 +100,6 @@ $(document).ready(function() {
           positionData.longitude = longitude;
           resolve(positionData)
         });
-      // });
     });
   };
 
@@ -177,7 +172,7 @@ $(document).ready(function() {
     if(result) {
       return result
     } else {
-      return "No biography available"
+      return {text: "No biography available"}
     };
   };
 
@@ -228,14 +223,17 @@ $(document).ready(function() {
     metroAreaID +
     '/calendar.json?apikey=qMMmyACVKOgL3Kgb' + '&jsoncallback=?';
     $.getJSON(eventUrl, function(data){
-      console.log(data.resultsPage);
-      $.each(data.resultsPage.results.event, function (i, event) {
-        var uri = event.uri;
-        var displayName = event.displayName;
-        $("#localEventsList").append("<a class=\"list-group-item\" href="+"\""+uri+"\""+
-          "onClick=\"return popup(this, 'popup')\">"+displayName+"</a>");
-        return i<9;
-      });
+      if($.isEmptyObject(data.resultsPage.results)) {
+        $("#localEventsList").append("<a class=\"list-group-item\" href=\"#\">No events near you...</a>");
+      } else {
+        $.each(data.resultsPage.results.event, function (i, event) {
+          var uri = event.uri;
+          var displayName = event.displayName;
+          $("#localEventsList").append("<a class=\"list-group-item\" href="+"\""+uri+"\""+
+            "onClick=\"return popup(this, 'popup')\">"+displayName+"</a>");
+          return i<9;
+        });
+      };
     });
   };
 

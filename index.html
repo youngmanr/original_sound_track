@@ -37,11 +37,7 @@
   <h1 id="currentLocation"></h1>
 </div>
 
-
-<!-- Input Controls -->
-<div class="container-fluid">
 <div id="jquery_jplayer_1" class="jp-jplayer"></div>
-<div id="controls">
 
 <!-- Playing Artist -->
 <div class="container-fluid">
@@ -71,6 +67,7 @@
   <!-- </div> -->
   </div>
   </div>
+</div>
 </div>
 
 <!-- Artist Biography Modal -->
@@ -116,27 +113,24 @@
 </div>
 
 <nav class="navbar navbar-inverse navbar-fixed-bottom">
-    <div class="container-fluid">
-      <div class="row">
-          <div class="btn-group">
-            <button type="button" id="play" class="btn btn-default btn-lg">
-          <span class="glyphicon glyphicon-chevron-right"></span> Play</button>
-            <button type="button" id="pause" class="btn btn-default btn-lg">
-          <span class="glyphicon glyphicon-pause"></span> Pause</button>
-            <button type="button" id="skip" class="btn btn-default btn-lg">
-          <span class="glyphicon glyphicon-share-alt"></span> Skip</button>
-          </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="btn-group">
+        <button type="button" id="play" class="btn btn-default btn-lg">
+      <span class="glyphicon glyphicon-chevron-right"></span> Play</button>
+        <button type="button" id="pause" class="btn btn-default btn-lg">
+      <span class="glyphicon glyphicon-pause"></span> Pause</button>
+        <button type="button" id="skip" class="btn btn-default btn-lg">
+      <span class="glyphicon glyphicon-share-alt"></span> Skip</button>
       </div>
-      <div class="row">
-          <div class="now-playing">
-              <p><span id="currentTrack">currentTrack</span><i> by </i><span id="currentArtist">currentArtist</span></p>
-          </div>
-        </div>
+  </div>
+  <div class="row">
+      <div class="now-playing">
+          <p><span id="currentTrack">currentTrack</span><i> by </i><span id="currentArtist">currentArtist</span></p>
       </div>
     </div>
+  </div>
 </nav>
-
-</div>
 
 <!-- </div> -->
 <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -149,5 +143,6 @@
 <script src="popup.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="app/js/jPlayer.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGWnWE0GeEPpCYmiy2mXZ9RnDGf_n3JQA&libraries=places"></script>
 </body>
 </html>
