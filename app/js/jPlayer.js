@@ -65,6 +65,10 @@ function displayCurrentArtist(document, artist, title, poster, bio, news) {
   // Clears previous articles before adding new
   $('#playingArtistNews').html("");
 
+  if(news.length === 0) {
+    $('#playingArtistNews').append("<a class=\"list-group-item\">No news from this band...</a></li>");
+  };
+
   for (var i = 0; i < news.length && i < 10; i++) {
     $('#playingArtistNews').append("<a class=\"list-group-item\" href="+"\""+news[i].url+"\""+"onClick=\"return popup(this, 'popup')\">"+news[i].name+"</a></li>");
   };

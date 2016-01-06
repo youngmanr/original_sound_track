@@ -216,14 +216,17 @@ $(document).ready(function() {
     metroAreaID +
     '/calendar.json?apikey=qMMmyACVKOgL3Kgb' + '&jsoncallback=?';
     $.getJSON(eventUrl, function(data){
-      console.log(data.resultsPage);
-      $.each(data.resultsPage.results.event, function (i, event) {
-        var uri = event.uri;
-        var displayName = event.displayName;
-        $("#localEventsList").append("<a class=\"list-group-item\" href="+"\""+uri+"\""+
-          "onClick=\"return popup(this, 'popup')\">"+displayName+"</a>");
-        return i<9;
-      });
+      if($.isEmptyObject(data.resultsPage.results)) {
+        $("#localEventsList").append("<a class=\"list-group-item\" href=\"#\">No events near you...</a>");
+      } else {
+        $.each(data.resultsPage.results.event, function (i, event) {
+          var uri = event.uri;
+          var displayName = event.displayName;
+          $("#localEventsList").append("<a class=\"list-group-item\" href="+"\""+uri+"\""+
+            "onClick=\"return popup(this, 'popup')\">"+displayName+"</a>");
+          return i<9;
+        });
+      };
     });
   };
 
