@@ -64,7 +64,12 @@ function displayCurrentArtist(document, artist, title, poster, bio, news) {
   //        '<a data-toggle="modal" data-target="#myModal">' + bio.text.substring(0,500) +'... see more</a>');
 
   $("#playingArtistBiography").html("<a class=\"list-group-item\""+
-          '<a data-toggle="modal" data-target="#myModal">' + bio.text.substring(0,500) +'... see more</a>');
+          '<a data-toggle="modal" data-target="#myModal">');
+          if (bio.text.length > 500) {
+            $("#playingArtistBiography > .list-group-item").append(bio.text.substring(0,500) +' <strong>(click to see more)<strong></a>');
+          } else {
+            $("#playingArtistBiography").append(bio.text);
+          };
 
   // Clears previous articles before adding new
   $('#playingArtistNews').html("");
