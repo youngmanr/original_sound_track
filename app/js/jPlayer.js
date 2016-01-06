@@ -60,7 +60,10 @@ function displayCurrentArtist(document, artist, title, poster, bio, news) {
   document.getElementById("currentPoster").src = poster;
   document.getElementById("bio_full").innerHTML = bio.text;
 
-  $("#playingArtistBiography").append("<a class=\"list-group-item\" href=\"#\""+
+  //$("#playingArtistBiography").append("<a class=\"list-group-item\" href=\"#\""+
+  //        '<a data-toggle="modal" data-target="#myModal">' + bio.text.substring(0,500) +'... see more</a>');
+
+  $("#playingArtistBiography").append("<a class=\"list-group-item\""+
           '<a data-toggle="modal" data-target="#myModal">' + bio.text.substring(0,500) +'... see more</a>');
 
   // Clears previous articles before adding new
