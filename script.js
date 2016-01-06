@@ -150,7 +150,7 @@ $(document).ready(function() {
           if(response.tracks.length > 0) {
             var randomNum = Math.floor(Math.random() * response.tracks.length);
             var randomTrack = response.tracks[randomNum];
-            console.log(randomTrack);
+            // console.log(randomTrack);
               myPlaylist.add({
                 title: randomTrack.name,
                 artist: randomTrack.artists[0].name,
@@ -158,9 +158,9 @@ $(document).ready(function() {
                 poster: randomTrack.album.images[0].url,
                 // bio: (artist.biographies.length !== 0 ) ? artist.biographies[0].text : "No biographies available",
                 bio: findBestBio(artist.biographies),
-                news: artist.news
+                news: artist.newss
             // playIfNotPlaying();
-            });
+            }, true);
           };
         });
       });
@@ -260,12 +260,14 @@ $(document).ready(function() {
           console.log("MyPlaylist (see below)");
           console.log(myPlaylist);
           $(".spinner").fadeOut("slow");
+          //updateCurrentArtistFromPlaylist();
         });
       });
     });
     getSongKickMetroID(positionData).then(function(metroAreaIDPromise) {
       getUpcomingEvents(metroAreaIDPromise);
     });
+
   });
 
   function searchByLocation() {
@@ -293,5 +295,18 @@ $(document).ready(function() {
       });
     });
   };
+
+  function updateCurrentArtistFromPlaylist() {
+    console.log("myPlaylist - see below");
+    console.log(myPlaylist.playlist[0]);
+
+    var artist = myPlaylist.playlist[0].artist;
+    var title = myPlaylist.playlist[0].title;
+    var poster = myPlaylist.playlist[0].poster;
+    var bio = myPlaylist.playlist[0].bio;
+    var news = myPlaylist.playlist[0].news;
+
+    displayCurrentArtist(document, artist, title, poster, bio, news);
+  }
 
 });

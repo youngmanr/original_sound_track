@@ -20,8 +20,8 @@ var myPlaylist = new jPlayerPlaylist({
 
   play: function(e) {
     updateDisplayedTrackTitle(e);
+
   },
-  // ready: console.log('playlist loaded'),
 
   autoplay: true,
   audioFullScreen: true, // Allows the audio poster to go full screen via keyboard
@@ -34,7 +34,7 @@ $("#play").click(function() {
 });
 
 $("#pause").click(function() {
-  console.log("skip button");
+  console.log("pause button");
   myPlaylist.pause();
 });
 
