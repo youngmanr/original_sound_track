@@ -63,9 +63,8 @@ function displayCurrentArtist(document, artist, title, poster, bio, news) {
   //$("#playingArtistBiography").append("<a class=\"list-group-item\" href=\"#\""+
   //        '<a data-toggle="modal" data-target="#myModal">' + bio.text.substring(0,500) +'... see more</a>');
 
-  $('#playingArtistBiography').html("");
-  $("#playingArtistBiography").append("<a class=\"list-group-item\" href=\"#\""+
-          'data-toggle="modal" data-target="#myModal">' + bio.text.substring(0,500) +'... see more</a>');
+  $("#playingArtistBiography").html("<a class=\"list-group-item\""+
+          '<a data-toggle="modal" data-target="#myModal">' + bio.text.substring(0,500) +'... see more</a>');
 
   // Clears previous articles before adding new
   $('#playingArtistNews').html("");
@@ -74,7 +73,7 @@ function displayCurrentArtist(document, artist, title, poster, bio, news) {
     $('#playingArtistNews').append("<a class=\"list-group-item\">No news from this band...</a></li>");
   };
 
-  for (var i = 0; i < news.length && i < 10; i++) {
+  for (var i = 0; i < news.length && i < 3; i++) {
     $('#playingArtistNews').append("<a class=\"list-group-item\" href="+"\""+news[i].url+"\""+"onClick=\"return popup(this, 'popup')\">"+news[i].name+"</a></li>");
   };
 }

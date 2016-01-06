@@ -232,7 +232,7 @@ $(document).ready(function() {
           var displayName = event.displayName;
           $("#localEventsList").append("<a class=\"list-group-item\" href="+"\""+uri+"\""+
             "onClick=\"return popup(this, 'popup')\">"+displayName+"</a>");
-          return i<4;
+          return i<7;
         });
       };
     });
@@ -243,7 +243,7 @@ $(document).ready(function() {
   });
 
   //MODAL SCALING
-  $('#myModal').on('show.bs.modal', function () {
+  $('.modal').on('show.bs.modal', function () {
     $('.modal-content').css('height',$( window ).height()*0.8);
   });
 
