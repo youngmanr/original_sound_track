@@ -2,6 +2,7 @@ $(document).ready(function() {
 
   var positionData = {};
   var playing = false;
+  var artistInfoDisplayed = false;
 
   $("#familiarityLow").click(function() {
     updateFamiliarity("0.1");
@@ -145,22 +146,20 @@ $(document).ready(function() {
         var countryCode = positionData.countryCode;
         var topTracksUrl = "https://api.spotify.com/v1/artists/" + spotifyId + "/top-tracks?country=" + countryCode;
 
-
         $.get(topTracksUrl, function(response){
           if(response.tracks.length > 0) {
             var randomNum = Math.floor(Math.random() * response.tracks.length);
             var randomTrack = response.tracks[randomNum];
-            // console.log(randomTrack);
-              myPlaylist.add({
-                title: randomTrack.name,
-                artist: randomTrack.artists[0].name,
-                mp3: randomTrack.preview_url,
-                poster: randomTrack.album.images[0].url,
-                // bio: (artist.biographies.length !== 0 ) ? artist.biographies[0].text : "No biographies available",
-                bio: findBestBio(artist.biographies),
-                news: artist.newss
+            var title = randomTrack.name;
+            var artist = randomTrack.artists[0].name;
+            var mp3 =randomTrack.preview_url;
+            var poster = randomTrack.album.images[0].url;
+            var bio = findBestBio(artist.biographies);
+            var news = artist.news;
+
+            myPlaylist.add({ title, artist,mp3, poster, bio, news });
             // playIfNotPlaying();
-            }, true);
+            displayArtistInfoIfNotAlreadyDisplayed(artist, title, poster, bio, news);
           };
         });
       });
@@ -187,6 +186,13 @@ $(document).ready(function() {
     if (!playing) {
       playing = true;
       myPlaylist.play(0);
+    };
+  }
+
+  function displayArtistInfoIfNotAlreadyDisplayed(artist, title, poster, bio, news){
+    if (!artistInfoDisplayed) {
+      artistInfoDisplayed = true;
+      displayCurrentArtist(document, artist, title, poster, bio, news);
     };
   }
 
