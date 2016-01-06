@@ -238,7 +238,7 @@ $(document).ready(function() {
     });
   };
 
-  $("#submitSearch").click(function() {
+  $("#searchBar").submit(function() {
     searchByLocation();
   });
 
