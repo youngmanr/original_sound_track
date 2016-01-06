@@ -63,7 +63,7 @@ function displayCurrentArtist(document, artist, title, poster, bio, news) {
   //$("#playingArtistBiography").append("<a class=\"list-group-item\" href=\"#\""+
   //        '<a data-toggle="modal" data-target="#myModal">' + bio.text.substring(0,500) +'... see more</a>');
 
-  $("#playingArtistBiography").append("<a class=\"list-group-item\""+
+  $("#playingArtistBiography").append("<a class=\"list-group-item\" href=\"#myModal\""+
           '<a data-toggle="modal" data-target="#myModal">' + bio.text.substring(0,500) +'... see more</a>');
 
   // Clears previous articles before adding new
