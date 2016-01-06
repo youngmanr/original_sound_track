@@ -21,6 +21,7 @@ $(document).ready(function() {
 
   function updateFamiliarity(f) {
     myPlaylist.remove();
+    artistInfoDisplayed = false;
     getArtists(positionData, f).then(function(artistsObjectPromise) {
       console.log('Updated Familiarity Artists: (see object below)');
       console.log(artistsObjectPromise);
