@@ -155,7 +155,7 @@ $(document).ready(function() {
 
             myPlaylist.add({ title: title, artist: artistName, mp3: mp3, poster: poster, bio: bio, news: news });
             // playIfNotPlaying();
-            displayArtistInfoIfNotAlreadyDisplayed(artist, title, poster, bio, news);
+            displayArtistInfoIfNotAlreadyDisplayed(artistName, title, poster, bio, news);
           };
         });
       });
