@@ -89,11 +89,6 @@ body {
     padding-left: 0px !important;
 }
 
-#nopad {
-    padding-right: 0px !important;
-    padding-left: 0px !important;
-}
-
 .spinner {
     position: fixed;
     left: 0px;
@@ -173,6 +168,7 @@ body {
 #localEventsList {
     outline: 1px solid black;
     padding: 1%;
+    margin-bottom: 100px;
 }
 
 #localEventsMap {
