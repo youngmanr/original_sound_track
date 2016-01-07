@@ -67,7 +67,7 @@ function displayCurrentArtist(document, artist, title, poster, bio, news) {
   $("#playingArtistBiography").html("<a class=\"list-group-item\">");
   if (bio.text.length > 500) {
     $("#playingArtistBiography > .list-group-item").append(bio.text.substring(0,500) +
-      '...<strong><a data-toggle="modal" data-target="#myModal"><br/>(click to see more)<strong></a>');
+      '...<strong><a data-toggle="modal" href="#" data-target="#myModal"><br/>(click to see more)<strong></a>');
   } else {
     $("#playingArtistBiography > .list-group-item").append(bio.text);
   };
