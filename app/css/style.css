@@ -151,7 +151,7 @@ body {
 
 .modal-dialog{
     overflow-y: initial !important;
-    width: 400px;
+    width: 90%;
 }
 
 .modal-body{
