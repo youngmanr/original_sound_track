@@ -1,44 +1,62 @@
 body {
-    padding: 10%;
 	background-color: #F0F8FF;
 }
 
-div {
-    margin-top: 10px;
-    margin-bottom: 10px;
+#AppLogo {
+    padding-top: 12px;
+    padding-bottom: 4px;
 }
 
-.navbar-default ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    background-color: #333;
-}
-
-.navbar-default ul li {
-    float: left;
-    position: relative;
+.spinner {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('images/page-loader.gif') 50% 50% no-repeat rgb(249,249,249);
 }
 
 .navbar-default #AppName {
-  font-family: Lobster, Monospace;
-  font-size: 24px;
-  margin-left: 15px;
+    font-family: Lobster, Monospace;
+    font-size: 24px;
+    color: white;
+    position:relative;
 }
 
-.navbar-default li a {
+.navbar-default #dropdown {
     font-size: 16px;
     display: inline-block;
     color: white;
-    text-align: center;
+    text-align: right;
     padding: 14px 14px;
     text-decoration: none;
     position:relative;
 }
 
+.navbar-default .dropdown-toggle {
+    color: white;
+}
+
+.navbar-default .dropdown-menu {
+    background-color: #333;
+    font-size: 16px;
+    color: white;
+}
+
+.navbar-default li a {
+    color: white;
+}
+
 .navbar-default li a:hover {
     background-color: #000000;
     color: white;
+}
+
+.navbar-default #searchBar {
+    position:relative;
+    text-align: center;
+    padding: 14px 14px;
 }
 
 
@@ -48,29 +66,76 @@ div {
     color: white;
 }
 
-.navbar-inverse {
-    background-color: #607B8B;
-    border-color: #E7E7E7;
+#searchVal {
+  width: 100%;
 }
 
-.row {
-    margin: 0 0;
+#location {
     text-align: center;
-
+    padding-top: 55px;
 }
-.btn-group {
-    margin-bottom: 5px;
 
+.navbar-inverse {
+    border-color: #E7E7E7;
+    text-align: center;
+    background: -webkit-linear-gradient(left,  #0f182b 0%,#2a3b53 33%,#2a3b53 66%,#0f182b 100%);
+}
+
+.container-fluid.full-width {
+    padding-left: 0;
+    padding-right: 0;
+    overflow-x: hidden;
+}
+
+.row.row-no-gutter {
+    margin: 0
+}
+
+.row.row-no-gutter [class*="col-"] {
+    padding: 0;
+    margin-top: 1px;
+    margin-bottom: 3%;
+}
+
+.has-inner .row.row-no-gutter {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.row.row-no-gutter .inner {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.btn-group {
+    margin-top: 10px;
+    margin-bottom: 5px;
 }
 
 .now-playing {
-    font-size: 18px;
+    font-size: 14px;
     font-family: Lobster, Monospace;
     color: white;
+
+}
+
+.nopadding {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+
+.spinner {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('image/spinner.gif') 50% 50% no-repeat rgb(249,249,249);
 }
 
 .modal-dialog{
-    overflow-y: initial !important
+    overflow-y: initial !important;
     width: 400px;
 }
 
@@ -138,6 +203,7 @@ div {
 #localEventsList {
     outline: 1px solid black;
     padding: 1%;
+    margin-bottom: 100px;
 }
 
 #localEventsMap {

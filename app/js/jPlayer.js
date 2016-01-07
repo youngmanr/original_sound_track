@@ -20,8 +20,8 @@ var myPlaylist = new jPlayerPlaylist({
 
   play: function(e) {
     updateDisplayedTrackTitle(e);
+
   },
-  // ready: console.log('playlist loaded'),
 
   autoplay: true,
   audioFullScreen: true, // Allows the audio poster to go full screen via keyboard
@@ -34,7 +34,7 @@ $("#play").click(function() {
 });
 
 $("#pause").click(function() {
-  console.log("skip button");
+  console.log("pause button");
   myPlaylist.pause();
 });
 
@@ -51,25 +51,34 @@ function updateDisplayedTrackTitle(e) {
   var bio = e.jPlayer.status.media.bio;
   var news = e.jPlayer.status.media.news;
 
+  displayCurrentArtist(document, artist, title, poster, bio, news);
+}
 
-  console.log(bio);
-
+function displayCurrentArtist(document, artist, title, poster, bio, news) {
   document.getElementById("currentArtist").innerHTML = artist;
   document.getElementById("currentTrack").innerHTML = title;
   document.getElementById("currentPoster").src = poster;
   document.getElementById("bio_full").innerHTML = bio.text;
-  document.getElementById("playingArtistBiography").innerHTML = bio.text.substring(0,500) +
-                          '<a data-toggle="modal" data-target="#myModal">... see more</a>';
 
+  //$("#playingArtistBiography").append("<a class=\"list-group-item\" href=\"#\""+
+  //        '<a data-toggle="modal" data-target="#myModal">' + bio.text.substring(0,500) +'... see more</a>');
 
+  $("#playingArtistBiography").html("<a class=\"list-group-item\""+
+          '<a data-toggle="modal" data-target="#myModal">');
+          if (bio.text.length > 500) {
+            $("#playingArtistBiography > .list-group-item").append(bio.text.substring(0,500) +' <strong>(click to see more)<strong></a>');
+          } else {
+            $("#playingArtistBiography").append(bio.text);
+          };
 
+  // Clears previous articles before adding new
+  $('#playingArtistNews').html("");
 
-  //$("playingArtistBiography").text(bio.substring(0,150) + '...');
+  if(news.length === 0) {
+    $('#playingArtistNews').append("<a class=\"list-group-item\">No news from this band...</a></li>");
+  };
 
-
-  $('#playingArtistNews').html(""); // Clears previous articles before adding new
-
-  for (var i = 0; i < news.length && i < 10; i++) {
+  for (var i = 0; i < news.length && i < 3; i++) {
     $('#playingArtistNews').append("<a class=\"list-group-item\" href="+"\""+news[i].url+"\""+"onClick=\"return popup(this, 'popup')\">"+news[i].name+"</a></li>");
   };
 }
