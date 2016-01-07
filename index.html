@@ -18,26 +18,30 @@
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-xs-3 col-sm-4 col-lg-4">
+        <div class="hidden-xs col-sm-4 col-lg-4">
+          <img id="AppLogo" class="navbar-brand" src="app/css/image/logo-tiny.png" href="#" data-toggle="modal" data-target="#AppModal">
           <a id="AppName" class="navbar-brand" href="#" data-toggle="modal" data-target="#AppModal">App name</a>
         </div>
-
-
+        <div class="col-xs-2 hidden-sm hidden-md hidden-lg">
+          <img id="AppLogo" class="navbar-brand" src="app/css/image/logo-tiny.png" href="#" data-toggle="modal" data-target="#AppModal">
+        </div>
         <div class="col-xs-6 col-sm-4 col-lg-4">
           <form id='searchBar' class="form-inline">
             <input type="text" class='form-control' placeholder="Search places..." id='searchVal'></input>
           </form>
         </div>
-        <div class="col-xs-3 col-sm-4 col-lg-4">
+        <div class="col-xs-4 col-sm-4 col-lg-4">
           <div id="dropdown" class="dropdown pull-right">
             <a href="#" data-toggle="dropdown" class="dropdown-toggle">Popularity<b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#" id="familiarityLow" name="optFamiliarity">Low</a></li>
-                <li><a href="#" id="familiarityMedium" name="optFamiliarity">Medium</a></li>
-                <li><a href="#" id="familiarityHigh" name="optFamiliarity">High</a></li>
-              </ul>
+            <ul class="dropdown-menu">
+              <li><a href="#" id="familiarityLow" name="optFamiliarity">Low</a></li>
+              <li><a href="#" id="familiarityMedium" name="optFamiliarity">Medium</a></li>
+              <li><a href="#" id="familiarityHigh" name="optFamiliarity">High</a></li>
+            </ul>
           </div>
         </div>
+      </div>
+    </div>
   </nav>
 
 <div id="location" class="container-fluid">
