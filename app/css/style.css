@@ -41,12 +41,16 @@ body {
 
 .navbar-default #dropdown {
     font-size: 16px;
-    display: inline-block;
     color: white;
-    text-align: right;
-    padding: 20px 25px 15px 5px;
+    padding-top: 13px;
     text-decoration: none;
-    position:relative;
+}
+
+#popDropdown {
+    background-color: #000;
+    font-size: 16px;
+    color: white;
+    border-color: #000 !important;
 }
 
 .navbar-default .dropdown-toggle {
@@ -129,7 +133,6 @@ body {
 
 .now-playing {
     font-size: 14px;
-    font-family: Lobster, Monospace;
     color: white;
 }
 
@@ -164,8 +167,6 @@ body {
 
 #currentLocation {
     padding: 1%;
-    font-family: Alegreya, Monospace;
-    font-weight: 800;
     color: WhiteSmoke;
     background-color: #262626
 }
