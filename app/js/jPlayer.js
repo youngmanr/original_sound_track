@@ -52,6 +52,7 @@ function updateDisplayedTrackTitle(e) {
   var news = e.jPlayer.status.media.news;
 
   displayCurrentArtist(document, artist, title, poster, bio, news);
+  updateAllNewsModal(e.jPlayer.status.media.news);
 }
 
 function displayCurrentArtist(document, artist, title, poster, bio, news) {
@@ -76,9 +77,30 @@ function displayCurrentArtist(document, artist, title, poster, bio, news) {
 
   if(news.length === 0) {
     $('#playingArtistNews').append("<a class=\"list-group-item\">No news from this band...</a></li>");
-  };
-
-  for (var i = 0; i < news.length && i < 3; i++) {
-    $('#playingArtistNews').append("<a class=\"list-group-item\" href="+"\""+news[i].url+"\""+"onClick=\"return popup(this, 'popup')\">"+news[i].name+"</a></li>");
-  };
+  } else {
+    for (var i = 0; i < news.length && i < 3; i++) {
+      $('#playingArtistNews').append("<a class=\"list-group-item\" href="+"\""+news[i].url+"\""+"onClick=\"return popup(this, 'popup')\">"+news[i].name+"</a></li>");
+    };
+    $('#playingArtistNews').append("<a class=\"list-group-item\" href=\"#\""+
+                                   '<a data-toggle="modal" id="moreNews" data-target="#newsModal"><strong>See more news</strong></a>')
+  }
 }
+
+function updateAllNewsModal(news) {
+  console.log(news);
+  for (var i = 0; i < news.length; i++) {
+    $('#news_full').append("<a class=\"list-group-item\" href="+"\""+news[i].url+"\""+"onClick=\"return popup(this, 'popup')\">"+news[i].name+"</a></li>");
+  };
+};
+
+
+
+
+
+
+
+
+
+
+
+
