@@ -189,6 +189,7 @@ $(document).ready(function() {
     if (!artistInfoDisplayed) {
       artistInfoDisplayed = true;
       displayCurrentArtist(document, artist, title, poster, bio, news);
+      updateAllNewsModal(news);
     };
   }
 
@@ -274,8 +275,8 @@ $(document).ready(function() {
           console.log('THE FOURTH PROMISE: ' + topTracksPromise);
           console.log("MyPlaylist (see below)");
           console.log(myPlaylist);
+
           $(".spinner").fadeOut("slow");
-          //updateCurrentArtistFromPlaylist();
         });
       });
     });
@@ -323,6 +324,7 @@ $(document).ready(function() {
     var poster = myPlaylist.playlist[0].poster;
     var bio = myPlaylist.playlist[0].bio;
     var news = myPlaylist.playlist[0].news;
+    console.log(news);
 
     displayCurrentArtist(document, artist, title, poster, bio, news);
   }
