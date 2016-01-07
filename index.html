@@ -3,71 +3,90 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link type="text/css" href="app/css/skin.css" rel="stylesheet">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="app/css/style.css">
-  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lobster" />
-  <title>Original Sound Track</title>
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lobster|Alegreya" />
+  <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
+  <link rel="icon" sizes="192x192" href="nice-highres.png">
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+  <title>Bands Near U</title>
 </head>
 <header>
 </header>
 <body>
+<div class="spinner"></div>
 <!-- <div class= "container"> -->
   <nav class="navbar navbar-default navbar-fixed-top">
-    <ul>
-      <li><a id="AppName" href="#">App name</a></li>
-      
-      <li><div><a class="navBarText" href="#">About</a></div></li>
-      <li>
-        <div class="dropdown">
-          <a href="#" data-toggle="dropdown" class="dropdown-toggle">Familiarity <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="#" id="familiarityLow" name="optFamiliarity">Low</a></li>
-              <li><a href="#" id="familiarityMedium" name="optFamiliarity">Medium</a></li>
-              <li><a href="#" id="familiarityHigh" name="optFamiliarity">High</a></li>
-            </ul>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="hidden-xs col-sm-4 col-lg-4">
+          <img id="AppLogo" class="navbar-brand" src="app/css/image/logo-tiny.png" href="#" data-toggle="modal" data-target="#AppModal"></img>
+          <a id="AppName" class="navbar-brand" href="#" data-toggle="modal" data-target="#AppModal">Bands Near U</a>
         </div>
-      </li>
-    </ul> 
+        <div class="col-xs-2 hidden-sm hidden-md hidden-lg">
+          <img id="AppLogo" class="navbar-brand" src="app/css/image/logo-tiny.png" href="#" data-toggle="modal" data-target="#AppModal">
+        </div>
+        <div class="col-xs-6 col-sm-4 col-lg-4">
+          <form id='searchBar' class="form-inline">
+            <input type="text" class='form-control' placeholder="Search places..." id='searchVal'></input>
+          </form>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-lg-4">
+          <div id="dropdown" class="dropdown pull-right">
+              <button class="btn btn-default dropdown-toggle" type="button" id="popDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Popularity
+                <span class="caret"></span>
+              </button>
+            <ul class="dropdown-menu">
+              <li><a href="#" id="familiarityHigh" name="optFamiliarity">High</a></li>
+              <li><a href="#" id="familiarityMedium" name="optFamiliarity">Medium</a></li>
+              <li><a href="#" id="familiarityLow" name="optFamiliarity">Low</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </nav>
 
-<div class="container-fluid">
+<div id="location" class="container-fluid">
   <h1 id="currentLocation"></h1>
 </div>
 
-
-<!-- Input Controls -->
-<div class="container-fluid">
 <div id="jquery_jplayer_1" class="jp-jplayer"></div>
-<div id="controls">
 
-<!-- Playing Artist -->
-<div class="container-fluid">
-<div id="playingArtist">
-<!-- <div class="container"> -->
-  <div class="row">
-  <div class="col-xs-12">
-  <!-- <h4 id="currentArtist">currentArtist</h4>
-  <h4 id="currentTrack">currentTrack</h4> -->
+<div class="container-fluid full-width has-inner">
+  <div class="row row-no-gutter">
+  <div class="col-xs-12 nopadding">
   <div class="artistTiles">
   <div class="container-fluid">
   <div id="playingArtistPoster">
-    <div class="col-md-4 col-sm-6">
-    <!-- <img id="currentPoster" class="img-rounded" alt="Artist image" width="350" height="350"> -->
-    <img id="currentPoster" class="img-responsive" alt="Album art">
-    </div>
-  </div>
-  <div class="col-md-4 col-sm-6">
-  <div id="playingArtistBiography">
+  <div class="col-md-4">
+  <div class="inner">
+  <!-- <img id="currentPoster" class="img-rounded" alt="Artist image" width="350" height="350"> -->
+  <img id="currentPoster" class="img-responsive" alt="Album art">
   </div>
   </div>
-  <div class="col-md-4 col-sm-6">
+  </div>
+  <div class="col-md-4">
+  <div class="inner">
+  <div id="localEventsTitle">Artist Biography</div>
+  <div id="playingArtistBiography" class="list-group"></div>
+  <div id="playingArtistTitle">Artist News</div>
   <div id="playingArtistNews">News</div>
   </div>
   </div>
+  <div class="col-md-4">
+  <div class="inner">
+  <div id="localEventsTitle">Local Events</div>
+  <div id="localEventsList" class="list-group">Events</div>
   </div>
-  <!-- </div> -->
+  </div>
+  </div>
+  </div>
   </div>
   </div>
 </div>
@@ -88,54 +107,83 @@
   </div>
 </div>
 
-<form id='searchBar' class="form-inline">
-  <input type="text" class='form-control' placeholder="Search places..." id='searchVal'></input>
-  <button type="button" id="submitSearch">SEARCH</button>
-</form>
-
-<!-- Local Events -->
-<div class="container-fluid">
-<div id="localEvents">
-  <div class="row">
-  <div class="col-xs-12">
-    <div id="localEventsTitle">Local Events</div>
-  </div>
-  </div>
-  <div class="row">
-  <div class="col-md-6">
-  <div id="localEventsList" class="list-group">Events</div>
-  <ul>
-  </ul>
-  </div>
-  <div class="col-md-6">
-  <div id="localEventsMap">Map</div>
-  </div>
-  </div>
-</div>
-</div>
-
-<nav class="navbar navbar-inverse navbar-fixed-bottom">
-    <div class="container-fluid">
-      <div class="row">
-          <div class="btn-group">
-            <button type="button" id="play" class="btn btn-default btn-lg">
-          <span class="glyphicon glyphicon-chevron-right"></span> Play</button>
-            <button type="button" id="pause" class="btn btn-default btn-lg">
-          <span class="glyphicon glyphicon-pause"></span> Pause</button>
-            <button type="button" id="skip" class="btn btn-default btn-lg">
-          <span class="glyphicon glyphicon-share-alt"></span> Skip</button>
-          </div>
+<!-- About App Modal -->
+<div class="modal fade" id="AppModal" tabindex="-1" role="dialog" aria-labelledby="AppModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="AppModalLabel">About</h4>
       </div>
-      <div class="row">
-          <div class="now-playing">
-              <p><span id="currentTrack">currentTrack</span><i> by </i><span id="currentArtist">currentArtist</span></p>
-          </div>
-        </div>
+      <div class="modal-body">
+      Built by:
+      <ul>
+        <li><a href ="https://github.com/k0zakinio" target="_blank" class="ronin">Andrew Dowell</a>
+        <li><a href ="https://github.com/blancopado" target="_blank" class="ronin">Pablo Dominguez</a>
+        <li><a href ="https://github.com/youngmanr" target="_blank" class="ronin">Rob Youngman</a>
+        <li><a href ="https://github.com/forty9er" target="_blank" class="ronin">Tom Barnes</a>
+      </ul>
+      <br/>
+      We built this app as our final project at <a href="http://ronin.makersacademy.com" target="_blank" class="ronin">Ronin Makers Academy</a>.
+      <br/>
+      This page uses:
+      <ul>
+        <li><a href="http://www.w3.org/html/" target="_blank" class="ronin">HTML with Geolocation</a>
+        <li><a href="https://www.javascript.com/" target="_blank" class="ronin">Javascript</a>
+        <li><a href="https://www.jquery.org/" target="_blank" class="ronin">jQuery</a>
+        <li><a href="http://jplayer.org/" target="_blank" class="ronin">jPlayer</a>
+        <li><a href="http://www.w3.org/Style/CSS/Overview.en.html" target="_blank" class="ronin">CSS3</a>
+        <li><a href="http://getbootstrap.com/" target="_blank" class="ronin">Bootstrap</a>
+        <li><a href="https://developers.google.com/maps/?hl=en" target="_blank" class="ronin">Google Maps Web and JavaScript API</a>
+        <li><a href="http://developer.echonest.com/" target="_blank" class="ronin">Echo Nest API</a>
+        <li><a href="https://developer.spotify.com/web-api/" target="_blank" class="ronin">Spotify Web API</a>
+        <li><a href="http://www.songkick.com/developer" target="_blank" class="ronin">Songkick API</a>
+
+      </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
-</nav>
-
+  </div>
 </div>
+
+<!-- News Modal -->
+<div class="modal fade" id="newsModal" tabindex="-1" role="dialog" aria-labelledby="NewsModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="NewsModalLabel">News</h4>
+      </div>
+      <div class="modal-body" id='news_full'></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="btn-group">
+        <button type="button" id="play" class="btn btn-default btn-md">
+      <span class="glyphicon glyphicon-chevron-right"></span> </button>
+        <button type="button" id="pause" class="btn btn-default btn-md">
+      <span class="glyphicon glyphicon-pause"></span> </button>
+        <button type="button" id="skip" class="btn btn-default btn-md">
+      <span class="glyphicon glyphicon-share-alt"></span> </button>
+      </div>
+  </div>
+  <div class="row">
+      <div class="now-playing">
+          <p><strong><span id="currentTrack">currentTrack</span></strong><i> by </i><strong><span id="currentArtist">currentArtist</span></strong></p>
+      </div>
+    </div>
+  </div>
+</nav>
 
 <!-- </div> -->
 <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -148,5 +196,6 @@
 <script src="popup.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="app/js/jPlayer.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGWnWE0GeEPpCYmiy2mXZ9RnDGf_n3JQA&libraries=places"></script>
 </body>
 </html>

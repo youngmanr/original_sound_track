@@ -2,6 +2,8 @@ $(document).ready(function() {
 
   var positionData = {};
   var playing = false;
+  var artistInfoDisplayed = false;
+  var modifiedCountries = ["United Kingdom"]
 
   $("#familiarityLow").click(function() {
     updateFamiliarity("0.1");
@@ -19,6 +21,7 @@ $(document).ready(function() {
 
   function updateFamiliarity(f) {
     myPlaylist.remove();
+    artistInfoDisplayed = false;
     getArtists(positionData, f).then(function(artistsObjectPromise) {
       console.log('Updated Familiarity Artists: (see object below)');
       console.log(artistsObjectPromise);
@@ -59,7 +62,6 @@ $(document).ready(function() {
 
   function showPosition() {
     return new Promise(function(resolve, reject) {
-      // getLocation().then(function(position) {
 
         var latitude = positionData.latitude;
         var longitude = positionData.longitude;
@@ -68,7 +70,8 @@ $(document).ready(function() {
 
         $.get(geolocUrl, function(response) {
           var results = response.results
-          if (results[results.length-1].address_components[0].long_name === 'United Kingdom') {
+          var country = results[results.length-1].address_components[0].long_name;
+          if (country === "United Kingdom") {
             for (var result = 0; result < results.length; result++) {
               for (var component = 0; component < results[result].address_components.length; component++) {
                 if(results[result].address_components[component].types.includes('postal_town')) {
@@ -91,11 +94,6 @@ $(document).ready(function() {
           };
           countryCode = results[results.length-1].address_components[0].short_name;
 
-          // console.log("cityName = " + cityName, "country = " + country, "countryCode = " + countryCode);
-          // console.log(response);
-
-          //resolve([cityName, country, countryCode]);
-
           positionData.cityName = cityName;
           positionData.country = country;
           positionData.countryCode = countryCode;
@@ -103,7 +101,6 @@ $(document).ready(function() {
           positionData.longitude = longitude;
           resolve(positionData)
         });
-      // });
     });
   };
 
@@ -145,22 +142,20 @@ $(document).ready(function() {
         var countryCode = positionData.countryCode;
         var topTracksUrl = "https://api.spotify.com/v1/artists/" + spotifyId + "/top-tracks?country=" + countryCode;
 
-
         $.get(topTracksUrl, function(response){
           if(response.tracks.length > 0) {
             var randomNum = Math.floor(Math.random() * response.tracks.length);
             var randomTrack = response.tracks[randomNum];
-            console.log(randomTrack);
-              myPlaylist.add({
-                title: randomTrack.name,
-                artist: randomTrack.artists[0].name,
-                mp3: randomTrack.preview_url,
-                poster: randomTrack.album.images[0].url,
-                // bio: (artist.biographies.length !== 0 ) ? artist.biographies[0].text : "No biographies available",
-                bio: findBestBio(artist.biographies),
-                news: artist.news
+            var title = randomTrack.name;
+            var artistName = randomTrack.artists[0].name;
+            var mp3 =randomTrack.preview_url;
+            var poster = randomTrack.album.images[0].url;
+            var bio = findBestBio(artist.biographies);
+            var news = artist.news;
+
+            myPlaylist.add({ title: title, artist: artistName, mp3: mp3, poster: poster, bio: bio, news: news });
             // playIfNotPlaying();
-            });
+            displayArtistInfoIfNotAlreadyDisplayed(artistName, title, poster, bio, news);
           };
         });
       });
@@ -178,7 +173,7 @@ $(document).ready(function() {
     if(result) {
       return result
     } else {
-      return "No biography available"
+      return {text: "No biography available"}
     };
   };
 
@@ -187,6 +182,14 @@ $(document).ready(function() {
     if (!playing) {
       playing = true;
       myPlaylist.play(0);
+    };
+  }
+
+  function displayArtistInfoIfNotAlreadyDisplayed(artist, title, poster, bio, news){
+    if (!artistInfoDisplayed) {
+      artistInfoDisplayed = true;
+      displayCurrentArtist(document, artist, title, poster, bio, news);
+      updateAllNewsModal(news);
     };
   }
 
@@ -222,24 +225,37 @@ $(document).ready(function() {
     metroAreaID +
     '/calendar.json?apikey=qMMmyACVKOgL3Kgb' + '&jsoncallback=?';
     $.getJSON(eventUrl, function(data){
-      console.log(data.resultsPage);
-      $.each(data.resultsPage.results.event, function (i, event) {
-        var uri = event.uri;
-        var displayName = event.displayName;
-        $("#localEventsList").append("<a class=\"list-group-item\" href="+"\""+uri+"\""+
-          "onClick=\"return popup(this, 'popup')\">"+displayName+"</a>");
-        return i<9;
-      });
+      if($.isEmptyObject(data.resultsPage.results)) {
+        $("#localEventsList").append("<a class=\"list-group-item\" href=\"#\">No events near you...</a>");
+      } else {
+        $.each(data.resultsPage.results.event, function (i, event) {
+          var uri = event.uri;
+          var displayName = event.displayName;
+          $("#localEventsList").append("<a class=\"list-group-item\" href="+"\""+uri+"\""+
+            "onClick=\"return popup(this, 'popup')\">"+displayName+"</a>");
+          return i<7;
+        });
+      };
     });
   };
 
-  $("#submitSearch").click(function() {
+  $("#searchBar").submit(function() {
     searchByLocation();
   });
 
   //MODAL SCALING
-  $('#myModal').on('show.bs.modal', function () {
+  $('.modal').on('show.bs.modal', function () {
     $('.modal-content').css('height',$( window ).height()*0.8);
+  });
+
+  // ADD SLIDEDOWN ANIMATION TO DROPDOWN //
+  $('.dropdown').on('show.bs.dropdown', function(e){
+    $(this).find('.dropdown-menu').first().stop(true, true).slideDown();
+  });
+
+  // ADD SLIDEUP ANIMATION TO DROPDOWN //
+  $('.dropdown').on('hide.bs.dropdown', function(e){
+    $(this).find('.dropdown-menu').first().stop(true, true).slideUp();
   });
 
   // CALLING THE FUNCTIONS IN A CHAIN
@@ -259,16 +275,21 @@ $(document).ready(function() {
           console.log('THE FOURTH PROMISE: ' + topTracksPromise);
           console.log("MyPlaylist (see below)");
           console.log(myPlaylist);
+
+          $(".spinner").fadeOut("slow");
         });
       });
     });
     getSongKickMetroID(positionData).then(function(metroAreaIDPromise) {
       getUpcomingEvents(metroAreaIDPromise);
     });
+
   });
 
   function searchByLocation() {
     myPlaylist.remove();
+    $(".spinner").fadeIn("slow");
+    artistInfoDisplayed = false;
     searchLocation().then(function(getLocPromise) {
       console.log('THE FIRST PROMISE: (see object below)');
       console.log(getLocPromise);
@@ -284,6 +305,7 @@ $(document).ready(function() {
             console.log('THE FOURTH PROMISE: ' + topTracksPromise);
             console.log("MyPlaylist (see below)");
             console.log(myPlaylist);
+             $(".spinner").fadeOut("slow");
           });
         });
       });
@@ -292,5 +314,19 @@ $(document).ready(function() {
       });
     });
   };
-  
+
+  function updateCurrentArtistFromPlaylist() {
+    console.log("myPlaylist - see below");
+    console.log(myPlaylist.playlist[0]);
+
+    var artist = myPlaylist.playlist[0].artist;
+    var title = myPlaylist.playlist[0].title;
+    var poster = myPlaylist.playlist[0].poster;
+    var bio = myPlaylist.playlist[0].bio;
+    var news = myPlaylist.playlist[0].news;
+    console.log(news);
+
+    displayCurrentArtist(document, artist, title, poster, bio, news);
+  }
+
 });
