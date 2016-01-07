@@ -207,6 +207,16 @@ body {
     margin-bottom: 120px;
 }
 
+#localEventsList {
+    font-family: Alegreya, Monospace;
+    font-weight: 600;
+}
+
+#playingArtistBiography {
+    font-family: Alegreya, Monospace;
+    font-weight: 600;
+}
+
 #localEventsTitle {
     padding: 1%;
     font-family: Alegreya, Monospace;
@@ -221,8 +231,7 @@ body {
 
 #playingArtistNews {
     font-family: Alegreya, Monospace;
-    font-style: italic;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 #jp_container_1 {
