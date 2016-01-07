@@ -189,8 +189,7 @@ body {
 }
 
 #playingArtistTitle {
-    font-family: Alegreya, Monospace;
-    font-weight: bold;
+    padding: 1%;
 }
 
 #artistTiles {
@@ -208,8 +207,6 @@ body {
 
 #localEventsTitle {
     padding: 1%;
-    font-family: Alegreya, Monospace;
-    font-weight: bold;
 }
 
 #localEventsList {
