@@ -8,6 +8,10 @@ body {
     cursor: pointer;
 }
 
+.navbar-brand {
+    outline:none !important;
+}
+
 .navbar form {
     padding-left: 5px;
     padding-right: 5px;
