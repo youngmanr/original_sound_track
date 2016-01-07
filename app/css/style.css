@@ -1,5 +1,5 @@
 body {
-	background-color: #F0F8FF;
+	background-color: #262626;
 }
 
 #AppLogo {
@@ -164,10 +164,11 @@ body {
 }
 
 #currentLocation {
-    outline: 1px solid black;
     padding: 1%;
     font-family: Alegreya, Monospace;
     font-weight: 800;
+    color: WhiteSmoke;
+    background-color: #262626
 }
 
 #controls {
@@ -191,10 +192,12 @@ body {
 #playingArtistTitle {
     font-family: Alegreya, Monospace;
     font-weight: bold;
+    color: white;
 }
 
 #artistTiles {
     margin: 0px;
+    color: white;
 }
 #currentPoster {
     outline: 1px solid black;
@@ -210,6 +213,7 @@ body {
     padding: 1%;
     font-family: Alegreya, Monospace;
     font-weight: bold;
+    color: white;
 }
 
 #localEventsList {
