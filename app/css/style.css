@@ -131,7 +131,6 @@ body {
     font-size: 14px;
     font-family: Lobster, Monospace;
     color: white;
-
 }
 
 .nopadding {
@@ -190,9 +189,9 @@ body {
 }
 
 #playingArtistTitle {
-    font-family: Alegreya, Monospace;
-    font-weight: bold;
     color: white;
+    padding: 1%;
+
 }
 
 #artistTiles {
@@ -211,8 +210,6 @@ body {
 
 #localEventsTitle {
     padding: 1%;
-    font-family: Alegreya, Monospace;
-    font-weight: bold;
     color: white;
 }
 
