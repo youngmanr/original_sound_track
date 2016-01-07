@@ -129,7 +129,6 @@ body {
 
 .now-playing {
     font-size: 14px;
-    font-family: Lobster, Monospace;
     color: white;
 }
 
@@ -164,8 +163,6 @@ body {
 
 #currentLocation {
     padding: 1%;
-    font-family: Alegreya, Monospace;
-    font-weight: 800;
     color: WhiteSmoke;
     background-color: #262626
 }
