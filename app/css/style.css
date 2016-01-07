@@ -166,6 +166,8 @@ body {
 #currentLocation {
     outline: 1px solid black;
     padding: 1%;
+    font-family: Alegreya, Monospace;
+    font-weight: 800;
 }
 
 #controls {
@@ -186,24 +188,16 @@ body {
     padding: 1%;
 }
 
-/*#playingArtistPoster{
-    outline: 1px solid black;
-}*/
+#playingArtistTitle {
+    font-family: Alegreya, Monospace;
+    font-style: italic;
+    font-weight: bold;
+}
 
 #artistTiles {
     margin: 0px;
 }
 #currentPoster {
-    outline: 1px solid black;
-    display: block;
-    margin: 0 auto;
-}
-
-#playingArtistBiography {
-    outline: 1px solid black;
-}
-
-#playingArtistNews {
     outline: 1px solid black;
 }
 
@@ -215,17 +209,20 @@ body {
 
 #localEventsTitle {
     padding: 1%;
+    font-family: Alegreya, Monospace;
+    font-style: italic;
+    font-weight: bold;
 }
 
 #localEventsList {
-    outline: 1px solid black;
     padding: 1%;
     margin-bottom: 100px;
 }
 
-#localEventsMap {
-    outline: 1px solid black;
-    padding: 1%;
+#playingArtistNews {
+    font-family: Alegreya, Monospace;
+    font-style: italic;
+    font-weight: bold;
 }
 
 #jp_container_1 {
