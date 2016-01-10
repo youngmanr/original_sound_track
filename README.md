@@ -1,16 +1,24 @@
-# < Bands Near U>
+# Bands Near U
 
 ### Screenshots
 
-![User Stories](docs/screenshots/screenshot1.png)
-![User Stories](docs/screenshots/screenshot2.png)
-![User Stories](docs/screenshots/screenshot3.png)
-![User Stories](docs/screenshots/screenshot4.png)
-![User Stories](docs/screenshots/screenshot5.png)
-![User Stories](docs/screenshots/screenshot6.jpg)
-![User Stories](docs/screenshots/screenshot7.jpg)
-![User Stories](docs/screenshots/screenshot8.jpg)
-![User Stories](docs/screenshots/screenshot9.jpg)
+![Screenshot1](docs/screenshots/screenshot1.png)
+
+![Screenshot2](docs/screenshots/screenshot2.png)
+
+![Screenshot3](docs/screenshots/screenshot3.png)
+
+![Screenhot4](docs/screenshots/screenshot4.png)
+
+![Screenhot4](docs/screenshots/screenshot5.png)
+
+![Screenhot5](docs/screenshots/screenshot6.png)
+
+![Screenhot6](docs/screenshots/screenshot7.png)
+
+![Screenhot7](docs/screenshots/screenshot8.png)
+
+![Screenhot8](docs/screenshots/screenshot9.png)
 
 ### Deployment locally
 * Install Node/NPM
@@ -38,7 +46,6 @@
 ### Pair rotations
 
 ![Pair rotations](https://www.dropbox.com/s/irm91ziy4j69gio/pair-rotations.png?raw=1)
-
 
 ### Communication
 
