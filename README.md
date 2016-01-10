@@ -44,7 +44,10 @@
 * Spotify API
 * Songkick API
 
-### User Stories
+### Project Working Document and User Stories
+https://docs.google.com/document/d/16NNmJa4yp-4q5cYy07H9eRYgip4YFweZ9PlP4LGgvjY
+
+### First week Retrospective
 https://docs.google.com/document/d/1PymRPDJkgK5D5HhTtilmV6tAKLntoazEezHT0CInLKI
 
 
