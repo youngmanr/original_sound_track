@@ -22,8 +22,9 @@
 
 ### Deployment locally
 * Install Node/NPM
-* CLone this project
+* Clone this project
 * npm install from within the project directory
+* *bower install
 * open index.html
 
 ### Deploying to Heroku
@@ -43,37 +44,11 @@
 * Spotify API
 * Songkick API
 
-### Pair rotations
-
-![Pair rotations](https://www.dropbox.com/s/irm91ziy4j69gio/pair-rotations.png?raw=1)
-
-### Communication
-
-Stand-ups:
-9.30am, 2.30pm, daily.
-
-Retro:
-Wednesday & Friday at 2.30pm
-
 ### User Stories
-https://docs.google.com/document/d/1PymRPDJkgK5D5HhTtilmV6tAKLntoazEezHT0CInLKI/edit
+https://docs.google.com/document/d/1PymRPDJkgK5D5HhTtilmV6tAKLntoazEezHT0CInLKI
 
 
-### Git Flow
 
-``` Master ```  *Develop branch to be fully tested before merge into master. True consensus reached before push.*
-
-```   | ```
-
-``` Develop ```  *Always pull from Develop and test/fix issues before pushing.*
-
-```  | | | ```
-
-``` Features ```  *New feature branches to be deleted once merged into Develop.*
-
-
-### Prioities
-https://docs.google.com/document/d/1PymRPDJkgK5D5HhTtilmV6tAKLntoazEezHT0CInLKI/edit
 
 
 
