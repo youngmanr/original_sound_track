@@ -1,5 +1,8 @@
 # Bands Near U
 
+### User Stories
+![UserStories](docs/screenshots/userStories.png)
+
 ### Screenshots
 
 ![Screenshot1](docs/screenshots/screenshot1.png)
@@ -55,7 +58,7 @@ Stand-ups:
 Retro:
 Wednesday & Friday at 2.30pm
 
-### User Stories
+### Project File
 https://docs.google.com/document/d/1PymRPDJkgK5D5HhTtilmV6tAKLntoazEezHT0CInLKI/edit
 
 
@@ -71,9 +74,6 @@ https://docs.google.com/document/d/1PymRPDJkgK5D5HhTtilmV6tAKLntoazEezHT0CInLKI/
 
 ``` Features ```  *New feature branches to be deleted once merged into Develop.*
 
-
-### Prioities
-https://docs.google.com/document/d/1PymRPDJkgK5D5HhTtilmV6tAKLntoazEezHT0CInLKI/edit
 
 
 
