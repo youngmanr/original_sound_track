@@ -47,7 +47,7 @@
 * Spotify API
 * Songkick API
 
-### Project Working Document and User Stories
+### Project Working Document
 https://docs.google.com/document/d/16NNmJa4yp-4q5cYy07H9eRYgip4YFweZ9PlP4LGgvjY
 
 ### First week Retrospective
@@ -56,19 +56,11 @@ https://docs.google.com/document/d/1PymRPDJkgK5D5HhTtilmV6tAKLntoazEezHT0CInLKI
 Retro:
 Wednesday & Friday at 2.30pm
 
-### Project File
-https://docs.google.com/document/d/1PymRPDJkgK5D5HhTtilmV6tAKLntoazEezHT0CInLKI/edit
-
-
 ### Git Flow
 
 ``` Master ```  *Develop branch to be fully tested before merge into master. True consensus reached before push.*
 
-```   | ```
-
 ``` Develop ```  *Always pull from Develop and test/fix issues before pushing.*
-
-```  | | | ```
 
 ``` Features ```  *New feature branches to be deleted once merged into Develop.*
 
